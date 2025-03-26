@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-position: center;
+    margin: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url("../../data/backgrounds/field.png");
+	background-size: cover;
+}
+
+#login {
+	background-color: #ffffff86;
+    padding: 25px;
+    margin: 20px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 13px -4px #000000;
+    backdrop-filter: blur(8px);
+	text-align: center;
+}
+
+#login h2 {
+	margin-top: 7px;
+}
+
+#input {
+	margin: 5px 0px;
+	border: none;
+	padding: 7px;
+	border-radius: 30px;
+	background-color: #ffffff96;
+	color: #000000;
+	width: 200px;
+	outline: none;
+	border: 1px solid #888888;
+}
+
+#input:focus {
+	border: 2px solid #000000;
+}
+
+#button {
+	border: none;
+	padding: 9px;
+	background-color: #007AFF;
+	border-radius: 30px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+#button:hover {
+	background-color: blue;
+}
