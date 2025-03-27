@@ -88,13 +88,5 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 	<md-outlined-text-field type="password" label="Password" value=""></md-outlined-text-field>    
 	<md-filled-button type="submit">Login</md-filled-button>
   </form>
-  <style>
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    }
-  </style>
 </body>
 </html>
