@@ -14,4 +14,9 @@ echo '
 
     document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
 </script>
+<style>
+    :root{
+        --md-sys-color-primary: #ECAA2E;
+    }
+</style>
 ';
