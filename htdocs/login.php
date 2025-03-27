@@ -82,23 +82,19 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
     ?>
 </head>
 <body>
-    <md-dialog open>
-        <h2>Login bei 470Cloud</h2>
-        <form method="post" action="#">
-            <?php
-            if (isset($_GET["from"])) {
-                echo '<input type="hidden" name="from" value="' . $_GET["from"] . '">';
-            }
-            ?>
-            <md-outlined-text-field name="user" label="Username" value="">
-            </md-outlined-text-field>
-            <md-outlined-text-field name="pw" label="Passwort" value="" type="password">
-            </md-outlined-text-field>
-            <input id="input" placeholder="Benutzername" type="text" name="user" required><br>
-            <input id="input" placeholder="Passwort" type="password" name="pw" required><br>
-            <span id="error"><?php if (isset($error)) { echo $error; } ?></span><br>
-            <md-filled-button type="submit">Anmelden</md-filled-button>
-        </form>
-        </md-dialog>
+  <h1 class="md-typescale-display-medium">470Cloud // Login</h1>
+  <form action="#" method="post">
+    <md-outlined-text-field type="text" label="Username" value=""></md-outlined-text-field>
+	<md-outlined-text-field type="password" label="Password" value=""></md-outlined-text-field>    
+	<md-filled-button type="submit">Login</md-filled-button>
+  </form>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  </style>
 </body>
 </html>
