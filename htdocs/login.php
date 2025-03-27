@@ -77,12 +77,12 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 <html lang="de">
 <head>
     <link rel="stylesheet" href="assets/css/login.css">
-   <?php
-   require "assets/md3.php";
-   ?>
+    <?php
+    require "assets/md3.php";
+    ?>
 </head>
 <body>
-    <div id="login">
+    <md-dialog open>
         <h2>Login bei 470Cloud</h2>
         <form method="post" action="#">
             <?php
@@ -95,6 +95,6 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
             <span id="error"><?php if (isset($error)) { echo $error; } ?></span><br>
             <md-filled-button type="submit">Anmelden</md-filled-button>
         </form>
-    </div>
+        </md-dialog>
 </body>
 </html>
