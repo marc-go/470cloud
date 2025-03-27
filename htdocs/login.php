@@ -77,6 +77,9 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 <html lang="de">
 <head>
     <link rel="stylesheet" href="assets/css/login.css">
+   <?php
+   require "assets/md3.php";
+   ?>
 </head>
 <body>
     <div id="login">
@@ -90,7 +93,7 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
             <input id="input" placeholder="Benutzername" type="text" name="user" required><br>
             <input id="input" placeholder="Passwort" type="password" name="pw" required><br>
             <span id="error"><?php if (isset($error)) { echo $error; } ?></span><br>
-            <input id="button" type="submit" value="Anmelden">
+            <md-filled-button type="submit">Anmelden</md-filled-button>
         </form>
     </div>
 </body>
