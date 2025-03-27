@@ -90,6 +90,10 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
                 echo '<input type="hidden" name="from" value="' . $_GET["from"] . '">';
             }
             ?>
+            <md-outlined-text-field name="user" label="Username" value="">
+            </md-outlined-text-field>
+            <md-outlined-text-field name="pw" label="Passwort" value="" type="password">
+            </md-outlined-text-field>
             <input id="input" placeholder="Benutzername" type="text" name="user" required><br>
             <input id="input" placeholder="Passwort" type="password" name="pw" required><br>
             <span id="error"><?php if (isset($error)) { echo $error; } ?></span><br>
