@@ -74,9 +74,8 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="de">
+<html>
 <head>
-    <link rel="stylesheet" href="assets/css/login.css">
     <?php
     require "assets/md3.php";
     ?>
@@ -88,5 +87,13 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 	<md-outlined-text-field type="password" label="Password" value=""></md-outlined-text-field>    
 	<md-filled-button type="submit">Login</md-filled-button>
   </form>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  </style>
 </body>
 </html>
