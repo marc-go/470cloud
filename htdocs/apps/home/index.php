@@ -23,7 +23,7 @@ if ($session->checkLogin() === true) {
 </head>
 <body>
     <md-tabs>
-        <a href="../home"><md-primary-tab>Home</md-primary-tab></a>
+        <md-primary-tab>Home</md-primary-tab>
         <md-primary-tab>Photos</md-primary-tab>
         <md-primary-tab>Audio</md-primary-tab>
     </md-tabs>
