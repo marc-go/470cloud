@@ -31,15 +31,10 @@ if ($session->checkLogin() === true) {
     ?>
 </head>
 <body>
-    <div id="menu">
-        <a href="#">Home</a>
-        <a href="../files/">Dateien</a>
-        <a href="../reminders/">ToDo</a>
-		<a href="../store/">App Store</a>
-        <a href="../../login.php?action=logout">Logout</a>
-    </div>
-    <div id="clear-content">
-        <?php echo '<h1>Willkommen, ' . $session->getUserName() . '</h1>'; ?>
-    </div>
+    <md-tabs>
+        <md-primary-tab>Video</md-primary-tab>
+        <md-primary-tab>Photos</md-primary-tab>
+        <md-primary-tab>Audio</md-primary-tab>
+    </md-tabs>
 </body>
 </html>
