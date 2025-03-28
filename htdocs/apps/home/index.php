@@ -28,6 +28,7 @@ if ($session->checkLogin() === true) {
     </style>
     <?php
     require "../../assets/md3.php";
+    ?>
 </head>
 <body>
     <div id="menu">
