@@ -82,9 +82,10 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 </head>
 <body>
   <h1 class="md-typescale-display-medium">470Cloud // Login</h1>
+  <?php if (isset($error)) { echo $error; } ?>
   <form action="#" method="post">
-    <md-outlined-text-field type="text" label="Username" value=""></md-outlined-text-field>
-	<md-outlined-text-field type="password" label="Password" value=""></md-outlined-text-field>    
+    <md-outlined-text-field type="text" name="user" label="Username" value=""></md-outlined-text-field>
+	<md-outlined-text-field type="password" name="pw" label="Password" value=""></md-outlined-text-field>    
 	<md-filled-button type="submit">Login</md-filled-button>
   </form>
   <style>
