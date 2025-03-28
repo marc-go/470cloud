@@ -17,15 +17,6 @@ if ($session->checkLogin() === true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>470Cloud // Home</title>
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <style>
-        body {
-            background-image: url('../../assets/background.php?user=<?php echo $session->getUserName(); ?>');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-    </style>
     <?php
     require "../../assets/md3.php";
     ?>
