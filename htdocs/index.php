@@ -16,7 +16,7 @@ if (!$session->checkLogin()) {
 	<title>470Cloud</title>
 </head>
 <body>
-<md-navigation-bar>
+	<md-navigation-bar>
         <md-navigation-tab label="Home"></md-navigation-tab>
         <md-navigation-tab label="Über uns"></md-navigation-tab>
         <md-navigation-tab label="Kontakt"></md-navigation-tab>
