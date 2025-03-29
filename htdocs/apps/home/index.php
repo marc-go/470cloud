@@ -23,9 +23,10 @@ if ($session->checkLogin() === true) {
 </head>
 <body>
     <md-tabs>
-        <md-primary-tab>Home</md-primary-tab>
-        <md-primary-tab>Photos</md-primary-tab>
-        <md-primary-tab>Audio</md-primary-tab>
+        <md-primary-tab active>Home</md-primary-tab>
+        <md-primary-tab>Files</md-primary-tab>
+        <md-primary-tab>ToDo</md-primary-tab>
+        <md-primary-tab>Settings</md-primary-tab>
     </md-tabs>
 </body>
 </html>
