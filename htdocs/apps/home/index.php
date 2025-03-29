@@ -10,7 +10,6 @@ if ($session->checkLogin() === true) {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +19,7 @@ if ($session->checkLogin() === true) {
     <?php
     require "../../assets/md3.php";
     ?>
+    <script src="/assets/menue.js"></script>
 </head>
 <body>
     <md-tabs>
