@@ -63,15 +63,13 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
             echo "Fehler beim Setzen der Cookies.";
         }
 
-        /* if (isset($_POST["from"])) {
+        if (isset($_POST["from"])) {
             header("Location: " . $_POST["from"]);
             exit;
         } else {
             header("Location: apps/home");
             exit;
-        } */
-       header("Location: index.php");
-       exit;
+        }
     }
 }
 ?>
