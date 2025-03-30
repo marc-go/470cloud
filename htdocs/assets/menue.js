@@ -1,5 +1,15 @@
-function openApp(app) {
-    setTimeout(function() {
-        window.location.href = "/apps/" + app;
-    }, 500);
-}
+document.getElementById("home").addEventListener("click", function() {
+    window.location.href = "/apps/home";
+})
+
+document.getElementById("files").addEventListener("click", function() {
+    window.location.href = "/apps/files";
+})
+
+document.getElementById("reminders").addEventListener("click", function() {
+    window.location.href = "/apps/reminders";
+})
+
+document.getElementById("settings").addEventListener("click", function() {
+    window.location.href = "/apps/settings";
+})
