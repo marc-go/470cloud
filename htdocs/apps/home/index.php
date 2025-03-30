@@ -5,7 +5,7 @@ require '../../assets/admin.php';
 $session = new loginManager();
 if ($session->checkLogin() === true) {
     $session->createNewSession();
-} else {
+}else{
     header("Location: ../../login.php?from=apps/home");
     exit;
 }
@@ -23,10 +23,10 @@ if ($session->checkLogin() === true) {
 </head>
 <body>
     <md-tabs>
-        <md-primary-tab active>Home</md-primary-tab>
-        <md-primary-tab>Files</md-primary-tab>
-        <md-primary-tab>ToDo</md-primary-tab>
-        <md-primary-tab>Settings</md-primary-tab>
+        <a onclick='openApp("home")'><md-primary-tab active>Home</md-primary-tab></a>
+        <a onclick='openApp("files")'><md-primary-tab>Files</md-primary-tab></a>
+        <a onclick='openApp("reminders")'><md-primary-tab>ToDo</md-primary-tab></a>
+        <a onclick='openApp("settings")'><md-primary-tab>Settings</md-primary-tab></a>
     </md-tabs>
 </body>
 </html>
