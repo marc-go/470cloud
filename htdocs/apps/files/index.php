@@ -17,61 +17,31 @@ if ($session->checkLogin()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>470Cloud // Home</title>
-    <link rel="stylesheet" href="../../assets/css/main.css">
-	<style>
-		body {
-			background-image: url('../../assets/background.php?user=<?php echo $session->getUserName(); ?>');
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-attachment: fixed;
-		}
-		
-		.widget {
-			position: fixed;
-			z-index: 9999;
-			display: none;
-			border: 2px solid #000000;
-			border-radius: 30px;
-			height: auto;
-			width: auto;
-			background-color: #ffffff;
-			color: #000000;
-			padding: 20px;
-		}
-		
-		#overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-        }
-		
-		a {
-			color: #000000;
-			text-decoration: none;
-		}
-		
-		a:hover {
-			text-decoration: underline;
-		}
-	</style>
+    <?php
+	require "../../assets/md3.php";
+	?>
 </head>
 <body>
-	<div id="overlay"></div>
-    <div id="menu">
-		<a href="#">Home</a>
-        <a href="../files/">Dateien</a>
-        <a href="../reminders/">ToDo</a>
-		<a href="../store/">App Store</a>
-        <a href="../../login.php?action=logout">Logout</a>
-    </div>
+	<md-tabs>
+        <md-primary-tab id="home">Home</md-primary-tab>
+        <md-primary-tab id="files">Files</md-primary-tab>
+        <md-primary-tab id="reminders">ToDo</md-primary-tab>
+        <md-primary-tab id="settings">Settings</md-primary-tab>
+    </md-tabs>
+	<md-dialog>
+  		<div slot="headline">
+			Add
+  		</div>
+  		<form action="upload.php" slot="content" id="form-id" method="post" enctype="multipart/form-data">
+		  	<input type="hidden" name="submit" value="true">
+		</form>
+  		<div slot="actions">
+    		<md-text-button form="form-id">Ok</md-text-button>
+  		</div>
+	</md-dialog>
     <div id="content">
 		<form action="upload.php" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="submit" value="true">
+			
 			<?php
 			if (isset($_GET["folder"])) {
 				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
