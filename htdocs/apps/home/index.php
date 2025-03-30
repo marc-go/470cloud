@@ -23,10 +23,10 @@ if ($session->checkLogin() === true) {
 </head>
 <body>
     <md-tabs>
-        <a onclick='openApp("home")'><md-primary-tab active>Home</md-primary-tab></a>
-        <a onclick='openApp("files")'><md-primary-tab>Files</md-primary-tab></a>
-        <a onclick='openApp("reminders")'><md-primary-tab>ToDo</md-primary-tab></a>
-        <a onclick='openApp("settings")'><md-primary-tab>Settings</md-primary-tab></a>
+        <md-primary-tab><a onclick='openApp("home")'>Home</a></md-primray-tab>
+        <md-primary-tab><a onclick='openApp("files")'>Files</a></md-primray-tab>
+        <md-primary-tab><a onclick='openApp("reminders")'>ToDo</a></md-primray-tab>
+        <md-primary-tab><a onclick='openApp("settings")'>Settings</a></md-primray-tab>
     </md-tabs>
 </body>
 </html>
