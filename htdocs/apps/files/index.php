@@ -31,67 +31,84 @@ if ($session->checkLogin()) {
     </md-tabs>
 
 	<span style="position: relative">
-		<md-filled-icon-button id="add_button">
-			<span class="material-symbols-outlined">add</span>
-		</md-filled-icon-button>
-		<md-menu id="usage-menu" anchor="add_button">
-    		<md-menu-item>
-      			<div slot="headline">Create File</div>
-    		</md-menu-item>
-			<md-menu-item>
-      			<div slot="headline">Upload File</div>
-    		</md-menu-item>
-    		<md-menu-item>
-     		 	<div slot="headline">Add Folder</div>
-    		</md-menu-item>
-    		
-  		</md-menu>
-	</span>
+		<md-filled-button id="usage-anchor">Create</md-filled-button>
+		<md-menu id="usage-menu" anchor="usage-anchor">
+		  <md-menu-item>
+			<div slot="headline">Apple</div>
+		  </md-menu-item>
+		  <md-menu-item>
+			<div slot="headline">Banana</div>
+		  </md-menu-item>
+		  <md-menu-item>
+			<div slot="headline">Cucumber</div>
+		  </md-menu-item>
+		</md-menu>
+	  </span>
+	  
+	  <script type="module">
+		// This example uses anchor as an ID reference
+		const anchorEl = document.body.querySelector('#usage-anchor');
+		const menuEl = document.body.querySelector('#usage-menu');
+	  
+		anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
+	  </script>
 
-<script type="module">
-  // This example uses MdMenu.prototype.anchorElement to set the anchor as an
-  // HTMLElement reference.
-  const anchorEl = document.body.querySelector('#add_button');
-  const menuEl = document.body.querySelector('#usage-menu');
-  menuEl.anchorElement = anchorEl;
+	<md-dialog id="upload">
+		<div slot="headline">
+		  Upload File
+		</div>
+		<form slot="content" id="form-1" action="upload.php" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="submit" value="true">
+		  	<?php
+		  	if (isset($_GET["folder"])) {
+				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
+		  	}
+		  	?>
+		  	<input type="file" name="data">
+		  	<input type="submit" value="Hochladen">
+	  	</form>
+		<form slot="content" id="form-id" method="dialog">
+		  A simple dialog with free-form content.
+		</form>
+		<div slot="actions">
+		  <md-text-button form="form-id">Ok</md-text-button>
+		</div>
+	  </md-dialog>
 
-  anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
-</script>
-	<md-dialog id="multiFormDialog">
-  		<md-dialog-title>Add</md-dialog-title>
-		<md-dialog-content>
-  			<form id="form-1" action="upload.php" method="post" enctype="multipart/form-data">
-		  		<input type="hidden" name="submit" value="true">
-				<?php
-				if (isset($_GET["folder"])) {
-					echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
-				}
-				?>
-				<input type="file" name="data">
-				<input type="submit" value="Hochladen">
-			</form>
-			<form id="form-2" action="bin/folder.php" method="get">
-				<?php
-				if (isset($_GET["folder"])) {
-					echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
-				}
-				?>
-				<md-outlined-text-field type="text" name="name" label="New Folder" value=""></md-outlined-text-field>
-				<md-filled-button type="submit">Create Folder</md-filled-button>
-			</form>
-			<form id="form-3" action="bin/file.php" method="post">
-				<?php
-				if (isset($_GET["folder"])) {
-					echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
-				}
-				?>
-				<md-outlined-text-field type="text" name="name" label="Filename" value=""></md-outlined-text-field>
-				<md-filled-button type="submit">Create File</md-filled-button>
-			</form>
-		</md-dialog-content>
-  		<md-dialog-actions>
-    		<md-text-button form="form-id">Ok</md-text-button>
-		</md-dialog-actions>
+	  <md-dialog id="folder_create">
+		<div slot="headline">
+		  Create Folder
+		</div>
+		<form slot="content" id="form-2" action="bin/folder.php" method="get">
+			<?php
+			if (isset($_GET["folder"])) {
+				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
+			}
+			?>
+			<md-outlined-text-field type="text" name="name" label="New Folder" value=""></md-outlined-text-field>
+			<md-filled-button type="submit">Create Folder</md-filled-button>
+		</form>
+		<div slot="actions">
+		  <md-text-button form="form-id">Ok</md-text-button>
+		</div>
+	  </md-dialog>
+
+	  <md-dialog id="file_create">
+		<div slot="headline">
+		  Create File
+		</div>
+		<form slot="content" id="form-3" action="bin/file.php" method="post">
+			<?php
+			if (isset($_GET["folder"])) {
+				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
+			}
+			?>
+			<md-outlined-text-field type="text" name="name" label="Filename" value=""></md-outlined-text-field>
+			<md-filled-button type="submit">Create File</md-filled-button>
+		</form>
+		<div slot="actions">
+		  <md-text-button form="form-id">Ok</md-text-button>
+		</div>
 	</md-dialog>
 		<a onclick="newFolder('open')">Ordner hinzufügen</a>
 		<span id="error"><?php if (isset($error)) { echo $error; } ?></span>
