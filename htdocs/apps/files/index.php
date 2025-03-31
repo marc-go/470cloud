@@ -36,14 +36,15 @@ if ($session->checkLogin()) {
 		</md-filled-icon-button>
 		<md-menu id="usage-menu" anchor="add_button">
     		<md-menu-item>
-      			<div slot="headline">Apple</div>
+      			<div slot="headline">Create File</div>
+    		</md-menu-item>
+			<md-menu-item>
+      			<div slot="headline">Upload File</div>
     		</md-menu-item>
     		<md-menu-item>
-     		 	<div slot="headline">Banana</div>
+     		 	<div slot="headline">Add Folder</div>
     		</md-menu-item>
-    		<md-menu-item>
-      			<div slot="headline">Cucumber</div>
-    		</md-menu-item>
+    		
   		</md-menu>
 	</span>
 
