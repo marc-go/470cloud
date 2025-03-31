@@ -20,6 +20,7 @@ if ($session->checkLogin()) {
     <?php
 	require "../../assets/md3.php";
 	?>
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100&icon_names=add" rel="stylesheet">
 </head>
 <body>
 	<md-tabs>
@@ -31,7 +32,7 @@ if ($session->checkLogin()) {
 
 	<span style="position: relative">
 		<md-filled-icon-button id="add_button">
-  			<md-icon>add</md-icon>
+			<span class="material-symbols-outlined">add</span>
 		</md-filled-icon-button>
 		<md-menu id="usage-menu" anchor="add_button">
     		<md-menu-item>
