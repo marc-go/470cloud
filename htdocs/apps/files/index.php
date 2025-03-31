@@ -57,12 +57,10 @@ if ($session->checkLogin()) {
 
   anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
 </script>
-	<md-dialog>
-  		<div slot="headline">
-			Add
-  		</div>
-		<form slot="content" id="form-id" method="dialog">
-  			<form action="upload.php" method="post" enctype="multipart/form-data">
+	<md-dialog id="multiFormDialog">
+  		<md-dialog-title>Add</md-dialog-title>
+		<md-dialog-content>
+  			<form id="form-1" action="upload.php" method="post" enctype="multipart/form-data">
 		  		<input type="hidden" name="submit" value="true">
 				<?php
 				if (isset($_GET["folder"])) {
@@ -72,7 +70,7 @@ if ($session->checkLogin()) {
 				<input type="file" name="data">
 				<input type="submit" value="Hochladen">
 			</form>
-			<form action="bin/folder.php" method="get">
+			<form id="form-2" action="bin/folder.php" method="get">
 				<?php
 				if (isset($_GET["folder"])) {
 					echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
@@ -81,7 +79,7 @@ if ($session->checkLogin()) {
 				<md-outlined-text-field type="text" name="name" label="New Folder" value=""></md-outlined-text-field>
 				<md-filled-button type="submit">Create Folder</md-filled-button>
 			</form>
-			<form action="bin/file.php" method="post">
+			<form id="form-3" action="bin/file.php" method="post">
 				<?php
 				if (isset($_GET["folder"])) {
 					echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
@@ -90,10 +88,10 @@ if ($session->checkLogin()) {
 				<md-outlined-text-field type="text" name="name" label="Filename" value=""></md-outlined-text-field>
 				<md-filled-button type="submit">Create File</md-filled-button>
 			</form>
-		</form>
-  		<div slot="actions">
+		</md-dialog-content>
+  		<md-dialog-actions>
     		<md-text-button form="form-id">Ok</md-text-button>
-  		</div>
+		</md-dialog-actions>
 	</md-dialog>
 		<a onclick="newFolder('open')">Ordner hinzufügen</a>
 		<span id="error"><?php if (isset($error)) { echo $error; } ?></span>
