@@ -28,20 +28,36 @@ if ($session->checkLogin()) {
         <md-primary-tab id="reminders">ToDo</md-primary-tab>
         <md-primary-tab id="settings">Settings</md-primary-tab>
     </md-tabs>
-	<md-dialog>
+
+	<span style="position: relative">
+  		<md-menu id="usage-menu-2">
+    		<md-menu-item>
+      			<div slot="headline">Create File</div>
+    		</md-menu-item>
+    		<md-menu-item>
+      			<div slot="headline">Upload File</div>
+    		</md-menu-item>
+    		<md-menu-item>
+      			<div slot="headline">Add Folder</div>
+    		</md-menu-item>
+  		</md-menu>
+	</span>
+
+<script type="module">
+  // This example uses MdMenu.prototype.anchorElement to set the anchor as an
+  // HTMLElement reference.
+  const anchorEl = document.body.querySelector('#usage-anchor-2');
+  const menuEl = document.body.querySelector('#usage-menu-2');
+  menuEl.anchorElement = anchorEl;
+
+  anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
+</script>
+	<md-dialog open>
   		<div slot="headline">
 			Add
   		</div>
   		<form action="upload.php" slot="content" id="form-id" method="post" enctype="multipart/form-data">
 		  	<input type="hidden" name="submit" value="true">
-		</form>
-  		<div slot="actions">
-    		<md-text-button form="form-id">Ok</md-text-button>
-  		</div>
-	</md-dialog>
-    <div id="content">
-		<form action="upload.php" method="post" enctype="multipart/form-data">
-			
 			<?php
 			if (isset($_GET["folder"])) {
 				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
@@ -50,6 +66,10 @@ if ($session->checkLogin()) {
 			<input type="file" name="data">
 			<input type="submit" value="Hochladen">
 		</form>
+  		<div slot="actions">
+    		<md-text-button form="form-id">Ok</md-text-button>
+  		</div>
+	</md-dialog>
 		<a onclick="newFolder('open')">Ordner hinzufügen</a>
 		<span id="error"><?php if (isset($error)) { echo $error; } ?></span>
 		<div class="files">
@@ -142,5 +162,8 @@ if ($session->checkLogin()) {
 	</div>
     <div id="js-tmp" style="display: none;"></div>
 	<script src="options.js"></script>
+	<md-fab aria-label="Add">
+  		<md-icon slot="icon">add</md-icon>
+	</md-fab>
 </body>
 </html>
