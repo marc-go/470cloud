@@ -57,19 +57,39 @@ if ($session->checkLogin()) {
 
   anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
 </script>
-	<md-dialog open>
+	<md-dialog>
   		<div slot="headline">
 			Add
   		</div>
-  		<form action="upload.php" slot="content" id="form-id" method="post" enctype="multipart/form-data">
-		  	<input type="hidden" name="submit" value="true">
-			<?php
-			if (isset($_GET["folder"])) {
-				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
-			}
-			?>
-			<input type="file" name="data">
-			<input type="submit" value="Hochladen">
+		<form slot="content" id="form-id" method="dialog">
+  			<form action="upload.php" method="post" enctype="multipart/form-data">
+		  		<input type="hidden" name="submit" value="true">
+				<?php
+				if (isset($_GET["folder"])) {
+					echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
+				}
+				?>
+				<input type="file" name="data">
+				<input type="submit" value="Hochladen">
+			</form>
+			<form action="bin/folder.php" method="get">
+				<?php
+				if (isset($_GET["folder"])) {
+					echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
+				}
+				?>
+				<md-outlined-text-field type="text" name="name" label="New Folder" value=""></md-outlined-text-field>
+				<md-filled-button type="submit">Create Folder</md-filled-button>
+			</form>
+			<form action="bin/file.php" method="post">
+				<?php
+				if (isset($_GET["folder"])) {
+					echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
+				}
+				?>
+				<md-outlined-text-field type="text" name="name" label="Filename" value=""></md-outlined-text-field>
+				<md-filled-button type="submit">Create File</md-filled-button>
+			</form>
 		</form>
   		<div slot="actions">
     		<md-text-button form="form-id">Ok</md-text-button>
