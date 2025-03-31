@@ -30,15 +30,18 @@ if ($session->checkLogin()) {
     </md-tabs>
 
 	<span style="position: relative">
-  		<md-menu id="usage-menu-2">
+		<md-filled-icon-button id="add_button">
+  			<md-icon>add</md-icon>
+		</md-filled-icon-button>
+		<md-menu id="usage-menu" anchor="add_button">
     		<md-menu-item>
-      			<div slot="headline">Create File</div>
+      			<div slot="headline">Apple</div>
     		</md-menu-item>
     		<md-menu-item>
-      			<div slot="headline">Upload File</div>
+     		 	<div slot="headline">Banana</div>
     		</md-menu-item>
     		<md-menu-item>
-      			<div slot="headline">Add Folder</div>
+      			<div slot="headline">Cucumber</div>
     		</md-menu-item>
   		</md-menu>
 	</span>
@@ -46,8 +49,8 @@ if ($session->checkLogin()) {
 <script type="module">
   // This example uses MdMenu.prototype.anchorElement to set the anchor as an
   // HTMLElement reference.
-  const anchorEl = document.body.querySelector('#usage-anchor-2');
-  const menuEl = document.body.querySelector('#usage-menu-2');
+  const anchorEl = document.body.querySelector('#add_button');
+  const menuEl = document.body.querySelector('#usage-menu');
   menuEl.anchorElement = anchorEl;
 
   anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
@@ -162,7 +165,7 @@ if ($session->checkLogin()) {
 	</div>
     <div id="js-tmp" style="display: none;"></div>
 	<script src="options.js"></script>
-	<md-fab aria-label="Add">
+	<md-fab aria-label="add">
   		<md-icon slot="icon">add</md-icon>
 	</md-fab>
 </body>
