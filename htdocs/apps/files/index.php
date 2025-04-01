@@ -47,7 +47,7 @@ if ($session->checkLogin()) {
 
 	  <script>
 		function openDialog(id) {
-			document.getElementById(id).open();
+			document.getElementById(id).classList.add("open");
 		}
 	  </script>
 	  
