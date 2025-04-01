@@ -34,16 +34,22 @@ if ($session->checkLogin()) {
 		<md-filled-button id="usage-anchor">Create</md-filled-button>
 		<md-menu id="usage-menu" anchor="usage-anchor">
 		  <md-menu-item>
-			<div slot="headline">Apple</div>
+			<div onclick="openDialog('create_file')" slot="headline">Create File</div>
 		  </md-menu-item>
 		  <md-menu-item>
-			<div slot="headline">Banana</div>
+			<div onclick="openDialog('upload_file')" slot="headline">Upload File</div>
 		  </md-menu-item>
 		  <md-menu-item>
-			<div slot="headline">Cucumber</div>
+			<div onclick="openDialog('create_folder')" slot="headline">Create Folder</div>
 		  </md-menu-item>
 		</md-menu>
 	  </span>
+
+	  <script>
+		function openDialog(id) {
+			document.getElementById("#" + id).open();
+		}
+	  </script>
 	  
 	  <script type="module">
 		// This example uses anchor as an ID reference
@@ -53,7 +59,7 @@ if ($session->checkLogin()) {
 		anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
 	  </script>
 
-	<md-dialog id="upload">
+	<md-dialog id="upload_file">
 		<div slot="headline">
 		  Upload File
 		</div>
@@ -75,7 +81,7 @@ if ($session->checkLogin()) {
 		</div>
 	  </md-dialog>
 
-	  <md-dialog id="folder_create">
+	  <md-dialog id="create_folder">
 		<div slot="headline">
 		  Create Folder
 		</div>
@@ -93,7 +99,7 @@ if ($session->checkLogin()) {
 		</div>
 	  </md-dialog>
 
-	  <md-dialog id="file_create">
+	  <md-dialog id="create_file">
 		<div slot="headline">
 		  Create File
 		</div>
