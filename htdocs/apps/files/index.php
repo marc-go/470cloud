@@ -74,7 +74,7 @@ if ($session->checkLogin()) {
 		  	<input type="submit" value="Hochladen">
 	  	</form>
 		<div slot="actions">
-		  <md-text-button form="form-id">Ok</md-text-button>
+		  <md-text-button onclick="document.getElementById('upload_file').removeAttribute('open')" form="form-id">Ok</md-text-button>
 		</div>
 	  </md-dialog>
 
@@ -92,7 +92,7 @@ if ($session->checkLogin()) {
 			<md-filled-button type="submit">Create Folder</md-filled-button>
 		</form>
 		<div slot="actions">
-		  <md-text-button form="form-id">Ok</md-text-button>
+		  <md-text-button onclick="document.getElementById('create_folder').removeAttribute('open')" form="form-id">Ok</md-text-button>
 		</div>
 	  </md-dialog>
 
@@ -110,7 +110,7 @@ if ($session->checkLogin()) {
 			<md-filled-button type="submit">Create File</md-filled-button>
 		</form>
 		<div slot="actions">
-		  <md-text-button form="form-id">Ok</md-text-button>
+		  <md-text-button onclick="document.getElementById('create_file').removeAttribute('open')" form="form-id">Ok</md-text-button>
 		</div>
 	</md-dialog>
 		<a onclick="newFolder('open')">Ordner hinzufügen</a>
