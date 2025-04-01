@@ -70,12 +70,9 @@ if ($session->checkLogin()) {
 				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
 		  	}
 		  	?>
-		  	<input type="file" name="data">
+		  	<input type="file" name="data"><br>
 		  	<input type="submit" value="Hochladen">
 	  	</form>
-		<form slot="content" id="form-id" method="dialog">
-		  A simple dialog with free-form content.
-		</form>
 		<div slot="actions">
 		  <md-text-button form="form-id">Ok</md-text-button>
 		</div>
@@ -91,7 +88,7 @@ if ($session->checkLogin()) {
 				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
 			}
 			?>
-			<md-outlined-text-field type="text" name="name" label="New Folder" value=""></md-outlined-text-field>
+			<md-outlined-text-field type="text" name="name" label="New Folder" value=""></md-outlined-text-field><br>
 			<md-filled-button type="submit">Create Folder</md-filled-button>
 		</form>
 		<div slot="actions">
@@ -109,7 +106,7 @@ if ($session->checkLogin()) {
 				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
 			}
 			?>
-			<md-outlined-text-field type="text" name="name" label="Filename" value=""></md-outlined-text-field>
+			<md-outlined-text-field type="text" name="name" label="Filename" value=""></md-outlined-text-field><br>
 			<md-filled-button type="submit">Create File</md-filled-button>
 		</form>
 		<div slot="actions">
