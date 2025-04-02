@@ -19,4 +19,5 @@ echo '
         --md-sys-color-primary: #ECAA2E;
     }
 </style>
+<script src="/assets/menue.js"></script>
 ';
