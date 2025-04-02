@@ -25,7 +25,7 @@ if ($session->checkLogin()) {
 <body>
 	<md-tabs>
         <md-primary-tab id="home">Home</md-primary-tab>
-        <md-primary-tab id="files">Files</md-primary-tab>
+        <md-primary-tab id="files" active>Files</md-primary-tab>
         <md-primary-tab id="reminders">ToDo</md-primary-tab>
         <md-primary-tab id="settings">Settings</md-primary-tab>
     </md-tabs>
