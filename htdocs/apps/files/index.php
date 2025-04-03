@@ -146,8 +146,6 @@ if ($session->checkLogin()) {
       						href="file.php?file=' . $path2 . '/' . $element . '"
       						target="_blank">
     							<div slot="headline">' . $element . '</div>
-    							<div slot="supporting-text">This will link you out in a new tab</div>
-    							<md-icon slot="end">open_in_new</md-icon>
  						 </md-list-item>';
 					}elseif (file_exists($path . $element)) {
 						echo '
@@ -157,8 +155,6 @@ if ($session->checkLogin()) {
       						href="file.php?file=' . $path2 . '/' . $element . '"
       						target="_blank">
     							<div slot="headline">' . $element . '</div>
-    							<div slot="supporting-text">This will link you out in a new tab</div>
-    							<md-icon slot="end">open_in_new</md-icon>
  						 </md-list-item>';
 					}else{
 						echo '
