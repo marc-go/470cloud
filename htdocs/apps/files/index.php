@@ -140,17 +140,26 @@ if ($session->checkLogin()) {
 					array_push($json, $path . $element);
 					if (is_dir($path . $element)) {
 						echo '
-						<div class="item" id="' . $element . '">
-							<input type="checkbox" id="checkbox-' . $element . '">
-							<a href="?folder=' . $path2 . "/" . $element . '">' . $element . '</a>
-							<a onclick=\'edit("' . $element . '")\'>...</a>
-						</div>';
+						<md-list-item
+							id="' . $element . '"
+						    type="link"
+      						href="file.php?file=' . $path2 . '/' . $element . '"
+      						target="_blank">
+    							<div slot="headline">' . $element . '</div>
+    							<div slot="supporting-text">This will link you out in a new tab</div>
+    							<md-icon slot="end">open_in_new</md-icon>
+ 						 </md-list-item>';
 					}elseif (file_exists($path . $element)) {
 						echo '
-						<div class="item" id="' . $element . '">
-							<a href="file.php?file=' . $path2 . "/" . $element . '">' . $element . '</a>
-							<a onclick=\'edit("' . $element . '")\'>...</a>
-						</div>';
+						<md-list-item
+							id="' . $element . '"
+						    type="link"
+      						href="file.php?file=' . $path2 . '/' . $element . '"
+      						target="_blank">
+    							<div slot="headline">' . $element . '</div>
+    							<div slot="supporting-text">This will link you out in a new tab</div>
+    							<md-icon slot="end">open_in_new</md-icon>
+ 						 </md-list-item>';
 					}else{
 						echo '
 						<script>
