@@ -174,48 +174,5 @@ if ($session->checkLogin()) {
 		</div>
     </div>
 	<span id="error"></span>
-	<div class="widget" id="widget">
-		<a onclick="closeWidget()">X</a><br>
-		<div id="error"></div>
-		<h3>Objekt umbennenen</h3>
-		<form onsubmit="rename(event)">
-		    <input type="text" id="name" placeholder="Neuer Name">
-		    <button type="submit">Umbennenen</button>
-        </form>
-		<h3>Objekt löschen</h3>
-		<p>Ausgewähltes Objekt in den Papierkorb verschieben</p>
-		<button onclick="remove()">Bestätigen</button>
-		<h3>Objekt teilen</h3>
-		<ul>
-			<li>
-				<a href="#" onclick="share(1)">Dateien sind nur Lesbar</a>
-			</li>
-			<li>
-				<a href="#" onclick="share(2)">Es können nur Dateien hochgeladen werden</a>
-			</li>
-			<li>
-			    <a href="#" onclick="share(3)">Vollzugriff</a>
-		    </li>
-	    </ul>
-    </div>
-	<div class="widget" id="widget2">
-		<a onclick="closeF()">X</a><br>
-		<span id="f-error"></span>
-		<h3>Neuer Ordner</h3>
-		<form onsubmit="addFolder(event)">
-			<input type="text" id="f-name" placeholder="Ordner Name"><br>
-			<button type="submit">Erstellen</button>
-		</form>
-	</div>
-	<div class="widget" id="errorwidget">
-		<h3>Fehler</h3>
-		<p>Fehler beim Laden einer Datei.</p>
-		<button onclick="closeError()">Schließen</button>
-	</div>
-    <div id="js-tmp" style="display: none;"></div>
-	<script src="options.js"></script>
-	<md-fab aria-label="add">
-  		<md-icon slot="icon">add</md-icon>
-	</md-fab>
 </body>
 </html>
