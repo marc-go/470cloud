@@ -21,6 +21,9 @@ if ($session->checkLogin()) {
 	require "../../assets/md3.php";
 	?>
 	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100&icon_names=add" rel="stylesheet">
+	<link rel="prefetch" href="/apps/home">
+    <link rel="prefetch" href="/apps/reminders">
+    <link rel="prefetch" href="/apps/settings">
 </head>
 <body>
 	<md-tabs>

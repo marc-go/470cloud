@@ -20,6 +20,9 @@ if ($session->checkLogin()) {
     <?php
     require "../../assets/md3.php";
     ?>
+    <link rel="prefetch" href="/apps/home">
+    <link rel="prefetch" href="/apps/files">
+    <link rel="prefetch" href="/apps/settings">
 </head>
 <body>
 	<md-tabs>

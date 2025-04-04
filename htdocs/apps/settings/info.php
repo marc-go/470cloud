@@ -58,6 +58,9 @@ if ($session->checkLogin() === true) {
 			text-decoration: none;
 		}
     </style>
+	<link rel="prefetch" href="/apps/home">
+    <link rel="prefetch" href="/apps/files">
+    <link rel="prefetch" href="/apps/reminders">
 </head>
 <body>
     <div id="menu">
