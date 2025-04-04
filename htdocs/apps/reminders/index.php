@@ -28,10 +28,8 @@ if ($session->checkLogin()) {
         <md-primary-tab id="reminders" active>ToDo</md-primary-tab>
         <md-primary-tab id="settings">Settings</md-primary-tab>
     </md-tabs>
-    <div id="content">
-        <button onclick="add()">+</button>
-        <h3>Heute</h3>
-		<div id="today">
+		<md-filled-button onclick="add()">Add</md-filled-button>
+        <h3 class="md-typescale-display-medium">Today</h3>
         	<?php
         	error_reporting(E_ALL);
         	ini_set('display_errors', 1);
@@ -56,7 +54,13 @@ if ($session->checkLogin()) {
                 	<div id="remind" class="' . $row["id"] . '" type="today" name="' . $row["name"] . '">
                     	<input type="checkbox" onclick="remove(' . $row["id"] . ')">
 						<a onclick="info(' . $row["id"] . ')" id="' . $row["id"] . '">' . $row["name"] . '</a>
-                	</div>';
+                	</div>
+					<md-list-item>
+						<md-checkbox touch-target="wrapper" onclick="remove(' . ></md-checkbox>
+    					<div slot="headline">' . $row["name"] . '</div>
+    					<div slot="supporting-text">' . $row["date"] . '</div>
+					</md-list-item>
+					';
             	}
 				echo '<div id="js-tmp-1" style="display: none;">' . $result->num_rows . '</div>';
         	}

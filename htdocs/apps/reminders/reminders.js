@@ -46,15 +46,13 @@ function info(id) {
             document.getElementById("w-name").innerHTML = data.name;
             document.getElementById("w-date").innerHTML = data.date;
             document.getElementById("w-temp").innerHTML = data.id;
-            document.getElementById("info").style.display = "block";
-            document.getElementById("overlay").style.display = "block";
+            document.getElementById("info").setAttribute("open", "");
         })
         .catch(error => console.log(error))
 }
 
 function closeInfo() {
-    document.getElementById("info").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
+    document.getElementById("info").removeAttribute("open");
 }
 
 function add() {
