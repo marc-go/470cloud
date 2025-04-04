@@ -113,7 +113,6 @@ if ($session->checkLogin()) {
 		  <md-text-button onclick="document.getElementById('create_file').removeAttribute('open')" form="form-id">Ok</md-text-button>
 		</div>
 	</md-dialog>
-		<a onclick="newFolder('open')">Ordner hinzufügen</a>
 		<span id="error"><?php if (isset($error)) { echo $error; } ?></span>
 		<div class="files">
 			<?php
