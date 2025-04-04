@@ -54,10 +54,6 @@ if ($session->checkLogin()) {
         	} else {
            	 	while ($row = $result->fetch_assoc()) {
                 	echo '
-                	<div id="remind" class="' . $row["id"] . '" type="today" name="' . $row["name"] . '">
-                    	<input type="checkbox" onclick="remove(' . $row["id"] . ')">
-						<a onclick="info(' . $row["id"] . ')" id="' . $row["id"] . '">' . $row["name"] . '</a>
-                	</div>
 					<md-list-item>
 						<md-checkbox touch-target="wrapper" onclick="remove(' . $row["id"] . ')"></md-checkbox>
     					<div slot="headline">' . $row["name"] . '</div>
@@ -91,10 +87,11 @@ if ($session->checkLogin()) {
         	} else {
           	 	while ($row = $result->fetch_assoc()) {
                 	echo '
-                	<div id="remind" class="' . $row["id"] . '" type="all" name="' . $row["name"] . '">
-                    	<input type="checkbox" onclick="remove(' . $row["id"] . ')">
-						<a onclick="info(' . $row["id"] . ')" id="' . $row["id"] . '">' . $row["name"] . '</a>
-               		</div>';
+                	<md-list-item>
+						<md-checkbox touch-target="wrapper" onclick="remove(' . $row["id"] . ')"></md-checkbox>
+    					<div slot="headline">' . $row["name"] . '</div>
+    					<div slot="supporting-text">' . $row["date"] . '</div>
+					</md-list-item>';
             	}
 				echo '<div id="js-tmp-2" style="display: none;">' . $result->num_rows . '</div>';
        		}
@@ -122,9 +119,12 @@ if ($session->checkLogin()) {
             } else {
                 while ($row = $result->fetch_assoc()) {
                     echo '
-                    <div class="remind" id="' . $row["id"] . '" type="removed">
-                        <a onclick="deleteWidgetOpen(' . $row["id"] . ')">' . $row["name"] . '</a>
-                    </div>';
+                    <md-list-item>
+						<md-checkbox touch-target="wrapper" onclick="remove(' . $row["id"] . ')"></md-checkbox>
+    					<div slot="headline">' . $row["name"] . '</div>
+    					<div slot="supporting-text">' . $row["date"] . '</div>
+					</md-list-item>
+					';
                 }
             }
             ?>
