@@ -16,55 +16,18 @@ if ($session->checkLogin()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>470Cloud // ToDo</title>
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <style>
-        body {
-            background-image: url('../../assets/background.php?user=<?php echo $session->getuserName(); ?>');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        
-        .widget {
-            top: 50%;
-            left: 50%;
-            position: fixed;
-            z-index: 9999;
-            display: none;
-            border: 2px solid #000000;
-            border-radius: 30px;
-            height: auto;
-            width: auto;
-            background-color: #ffffff;
-            color: #000000;
-            padding: 20px;
-        }
-        
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-        }
-		
-		#js-tmp {
-			display: none;
-		}
-    </style>
     <script src="reminders.js"></script>
+    <?php
+    require "../../assets/md3.php";
+    ?>
 </head>
 <body>
-    <div id="menu">
-		<a href="#">Home</a>
-        <a href="../files/">Dateien</a>
-        <a href="../reminders/">ToDo</a>
-		<a href="../store/">App Store</a>
-        <a href="../../login.php?action=logout">Logout</a>
-    </div>
+	<md-tabs>
+        <md-primary-tab id="home">Home</md-primary-tab>
+        <md-primary-tab id="files">Files</md-primary-tab>
+        <md-primary-tab id="reminders" active>ToDo</md-primary-tab>
+        <md-primary-tab id="settings">Settings</md-primary-tab>
+    </md-tabs>
     <div id="content">
         <button onclick="add()">+</button>
         <h3>Heute</h3>
