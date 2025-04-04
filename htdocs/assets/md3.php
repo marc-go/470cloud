@@ -20,4 +20,10 @@ echo '
     }
 </style>
 <script src="/assets/menue.js"></script>
+<script>
+    fetch("/apps/home")
+    fetch("/apps/files")
+    fetch("/apps/reminders")
+    fetch("/apps/settings")
+</script>
 ';
