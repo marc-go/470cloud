@@ -56,7 +56,7 @@ if ($session->checkLogin()) {
 						<a onclick="info(' . $row["id"] . ')" id="' . $row["id"] . '">' . $row["name"] . '</a>
                 	</div>
 					<md-list-item>
-						<md-checkbox touch-target="wrapper" onclick="remove(' . ></md-checkbox>
+						<md-checkbox touch-target="wrapper" onclick="remove(' . $row["id"] . ')"></md-checkbox>
     					<div slot="headline">' . $row["name"] . '</div>
     					<div slot="supporting-text">' . $row["date"] . '</div>
 					</md-list-item>
