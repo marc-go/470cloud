@@ -65,7 +65,7 @@ if ($session->checkLogin()) {
         	}
         	?>
 		</div>
-		<h3>Alle</h3>
+		<h3 class="md-typescale-display-medium">Alle</h3>
 		<div id="all">
 			<?php
         	error_reporting(E_ALL);
@@ -97,7 +97,7 @@ if ($session->checkLogin()) {
        		}
         	?>
 		</div>
-        <h3>Gelöscht</h3>
+        <h3 class="md-typescale-display-medium">Gelöscht</h3>
         <div id="removed">
             <?php
             error_reporting(E_ALL);
@@ -120,7 +120,6 @@ if ($session->checkLogin()) {
                 while ($row = $result->fetch_assoc()) {
                     echo '
                     <md-list-item>
-						<md-checkbox touch-target="wrapper" onclick="remove(' . $row["id"] . ')"></md-checkbox>
     					<div slot="headline">' . $row["name"] . '</div>
     					<div slot="supporting-text">' . $row["date"] . '</div>
 					</md-list-item>
