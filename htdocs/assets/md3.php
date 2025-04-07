@@ -15,8 +15,12 @@ echo '
     document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
 </script>
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open%20Sans:wght@400;500;700&display=swap");
+
     :root{
         --md-sys-color-primary: #ECAA2E;
+        --md-ref-typeface-brand: "Open Sans";
+        --md-ref-typeface-plain: system-ui;
     }
 </style>
 <script src="/assets/menue.js"></script>

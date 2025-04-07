@@ -1,3 +1,6 @@
+"use strict";
+console.log("Load /apps/reminders/reminders.js");
+
 function remove(id) {
 	fetch('bin/remove.php?id=' + id)
         .then(response => response.json())
@@ -56,45 +59,7 @@ function closeInfo() {
 }
 
 function add() {
-    document.getElementById("add").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
-}
-
-function closeAdd() {
-    document.getElementById("add").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
-}
-
-function submitAdd() {
-    var name = document.getElementById("a-name").value;
-    var date = document.getElementById("a-date").value;
-
-    if (!name || !date) {
-        alert("Bitte füllen Sie alle Felder aus.");
-        return;
-    }
-
-    var data = {
-        name: name,
-        date: date
-    };
-
-    fetch("bin/add.php", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status == 200) {
-            window.location.reload();
-        } else {
-            alert("Fehler: " + data.error);
-        }
-    })
-    .catch(error => alert(error));
+    document.getElementById("add").setAttribute("open", "");
 }
 
 function deleteWidgetOpen(id) {

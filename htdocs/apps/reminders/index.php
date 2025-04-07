@@ -50,7 +50,7 @@ if ($session->checkLogin()) {
         
         	$result = $stmt->get_result();
         	if ($result->num_rows <= 0) {
-            	echo '<span>Für heute alles erledigt.</span>';
+            	echo '<p class="md-typescale-body-medium">Für heute alles erledigt.</p>';
         	} else {
            	 	while ($row = $result->fetch_assoc()) {
                 	echo '
@@ -83,7 +83,7 @@ if ($session->checkLogin()) {
         
         	$result = $stmt->get_result();
        		if ($result->num_rows <= 0) {
-            	echo '<div slot="headline">Hier gibt es nichts.</span>';
+            	echo '<p class="md-typescale-body-medium">Hier gibt es nichts.</p>';
         	} else {
           	 	while ($row = $result->fetch_assoc()) {
                 	echo '
@@ -115,7 +115,7 @@ if ($session->checkLogin()) {
         
             $result = $stmt->get_result();
             if ($result->num_rows <= 0) {
-                echo '<div solt="headline">Hier gibt es nichts.</div>';
+                echo '<p class="md-typescale-body-medium">Hier gibt es nichts.</p>';
             } else {
                 while ($row = $result->fetch_assoc()) {
                     echo '
@@ -127,8 +127,20 @@ if ($session->checkLogin()) {
                 }
             }
             ?>
-        </div>
-    </div>
+    	</div>
+
+		<md-dialog id="add">
+			<div slot="headline">
+			  Add Task
+			</div>
+			<form slot="content" id="form-id" method="post" action="bin/add.php">
+				<md-filled-text-field label="Task" value="" type="text"></md-filled-text-field><br><br>
+				<md-filled-text-field label="Date" value="" type="date"></md-filled-text-field>
+			</form>
+			<div slot="actions">
+			  <md-text-button form="form-id">Add</md-text-button>
+			</div>
+		  </md-dialog>
     <div id="overlay"></div>
 	<div id="js-tmp"></div>
 </body>

@@ -11,9 +11,7 @@ if (!$session->checkLogin()) {
 	echo '{"status":500}';
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
-
-if (isset($data["name"]) && isset($data["date"])) {
+if (isset($_POST["name"]) && isset($_POST["date"])) {
     require "../../../assets/db.php";
     
     $sql = "INSERT INTO reminders (name, user, date, trash) VALUES (?, ?, ?, ?)";
@@ -23,17 +21,17 @@ if (isset($data["name"]) && isset($data["date"])) {
     }
 
 	$trash = 0;
-    @$stmt->bind_param("sssi", $data["name"], $session->getUserName(), $data["date"], $trash);
+    @$stmt->bind_param("sssi", $_POST["name"], $session->getUserName(), $_POST["date"], $trash);
     
     if ($stmt->execute() === TRUE) {
-        echo json_encode(['status' => 200]);
+        header("Location: /apps/reminders");
     } else {
-        echo json_encode(['status' => 500, 'error' => $stmt->error]);
+        header("Location: /apps/reminders/?error=There was an error: " . $stmt->error);
     }
     
     $stmt->close();
     $conn->close();
 } else {
-    echo json_encode(['status' => 400, 'error' => 'Fehlende Parameter']);
+    header("Location: /apps/reminders/?error=There was an error: No Params");
 }
 ?>
