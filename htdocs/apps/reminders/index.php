@@ -129,27 +129,6 @@ if ($session->checkLogin()) {
             ?>
         </div>
     </div>
-    <div class="widget" id="info">
-        <a onclick="closeInfo()">X</a>
-        <h3>Name</h3>
-        <span id="w-name"></span>
-        <h3>Datum</h3>
-        <span id="w-date"></span>
-        <div id="w-temp" style="display: none;"></div>
-    </div>
-    <div class="widget" id="add">
-        <a onclick="closeAdd()">X</a>
-        <h3>Neuer Eintrag</h3>
-        <input type="text" id="a-name" placeholder="Erinnerung"><br>
-        <input type="date" id="a-date" value="<?php echo date("d.m.Y"); ?>"><br>
-        <button onclick="submitAdd()">Hinzufügen</button>
-    </div>
-	<div class="widget" id="delete">
-		<a onclick="deleteWidgetClose()">X</a>
-		<h3>Löschen</h3>
-		<button onclick="refreshRemind()">Wiederherstellen</button><br>
-		<button onclick="deleteRemind()">Löschen</button>
-	</div>
     <div id="overlay"></div>
 	<div id="js-tmp"></div>
 </body>
