@@ -83,7 +83,7 @@ if ($session->checkLogin()) {
         
         	$result = $stmt->get_result();
        		if ($result->num_rows <= 0) {
-            	echo '<span>Hier gibt es nichts.</span>';
+            	echo '<div slot="headline">Hier gibt es nichts.</span>';
         	} else {
           	 	while ($row = $result->fetch_assoc()) {
                 	echo '
@@ -115,7 +115,7 @@ if ($session->checkLogin()) {
         
             $result = $stmt->get_result();
             if ($result->num_rows <= 0) {
-                echo '<span id="rm-msg">Hier gibt es nichts.</span>';
+                echo '<div solt="headline">Hier gibt es nichts.</div>';
             } else {
                 while ($row = $result->fetch_assoc()) {
                     echo '
