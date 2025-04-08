@@ -62,6 +62,10 @@ function add() {
     document.getElementById("add").setAttribute("open", "");
 }
 
+function closeAdd() {
+	document.getElementById("add").removeAttribute("open");
+}
+
 function deleteWidgetOpen(id) {
 	document.getElementById("overlay").style.display = "block";
 	document.getElementById("delete").style.display = "block";
@@ -71,20 +75,6 @@ function deleteWidgetOpen(id) {
 function deleteWidgetClose() {
 	document.getElementById("overlay").style.display = "none";
 	document.getElementById("delete").style.display = "none";
-}
-
-function refreshRemind() {
-	var id = document.getElementById("js-tmp").innerHTML;
-	fetch("bin/refresh.php?id=" + id)
-		.then(response => response.json())
-		.then(data => {
-			if (data.status == 200) {
-				window.location.reload();
-			}else{
-				alert("Error: " + data.error);
-			}
-		})
-		.catch(error => alert("Error: " + data.error))
 }
 
 function deleteRemind() {

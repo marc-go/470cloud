@@ -8,7 +8,7 @@ define("PATH", "../../../");
 require "../../../assets/admin.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
-	die('{"status":500}');
+	die('{"status":500, "error":"No Login"}');
 }
 
 if (isset($_GET["id"])) {
@@ -26,7 +26,7 @@ if (isset($_GET["id"])) {
 	if (!$row["user"] == $session->getUserName()) {
 		$stmt->close();
 		$conn->close();
-		die('{"status":500}');
+		die('{"status":500, "error":"False User."}');
 	}else{
 		$sql = "UPDATE reminders SET trash = 1 WHERE id = ?";
 		$stmt = $conn->prepare($sql);
@@ -35,7 +35,7 @@ if (isset($_GET["id"])) {
 		if (!$stmt->execute() === TRUE) {
 			$stmt->close();
 			$conn->close();
-			die('{"status":500}');
+			die('{"status":500, "error":"MySQL Error"}');
 		}else{
 			$stmt->close();
 			$conn->close();

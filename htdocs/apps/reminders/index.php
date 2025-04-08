@@ -56,7 +56,7 @@ if ($session->checkLogin()) {
                 	echo '
 					<md-list-item>
 						<md-checkbox touch-target="wrapper" onclick="remove(' . $row["id"] . ')"></md-checkbox>
-    					<div slot="headline">' . $row["name"] . '</div>
+    					<div slot="headline" onclick="info(' . $row["id"] . ')">' . $row["name"] . '</div>
     					<div slot="supporting-text">' . $row["date"] . '</div>
 					</md-list-item>
 					';
@@ -134,14 +134,23 @@ if ($session->checkLogin()) {
 			  Add Task
 			</div>
 			<form slot="content" id="form-id" method="post" action="bin/add.php">
-				<md-filled-text-field label="Task" value="" type="text"></md-filled-text-field><br><br>
-				<md-filled-text-field label="Date" value="" type="date"></md-filled-text-field>
+				<md-filled-text-field name="name" label="Task" value="" type="text"></md-filled-text-field><br><br>
+				<md-filled-text-field name="date" label="Date" value="" type="date"></md-filled-text-field>
 			</form>
 			<div slot="actions">
+			  <md-text-button onclick="closeAdd()">Cancle</md-text-button>
 			  <md-text-button form="form-id">Add</md-text-button>
 			</div>
 		  </md-dialog>
-    <div id="overlay"></div>
+		  <md-dialog>
+			<div slot="headline" id="w-name"></div>
+			<form slot="content" id="form-id" method="dialog">
+			  <md-filled-button></md-filled-button>
+			</form>
+			<div slot="actions">
+			  <md-text-button form="form-id">Ok</md-text-button>
+			</div>
+		  </md-dialog>
 	<div id="js-tmp"></div>
 </body>
 </html>
