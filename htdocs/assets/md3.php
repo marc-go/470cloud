@@ -18,8 +18,8 @@ echo '
     @import url("https://fonts.googleapis.com/css2?family=Open%20Sans:wght@400;500;700&display=swap");
 
     :root{
-        --md-sys-color-primary: #ECAA2E;
-        --md-ref-typeface-brand: "Open Sans";
+        --md-sys-color-primary:rgb(46, 131, 236);
+        --md-ref-typeface-brand: "roboto", sans-serif;
         --md-ref-typeface-plain: system-ui;
     }
 </style>
