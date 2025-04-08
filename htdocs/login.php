@@ -79,6 +79,17 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
     <?php
     require "assets/md3.php";
     ?>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  </style>
 </head>
 <body>
   <h1 class="md-typescale-display-medium">470Cloud // Login</h1>
@@ -88,13 +99,5 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 	<md-outlined-text-field type="password" name="pw" label="Password" value=""></md-outlined-text-field>    
 	<md-filled-button type="submit">Login</md-filled-button>
   </form>
-  <style>
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    }
-  </style>
 </body>
 </html>
