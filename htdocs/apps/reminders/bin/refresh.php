@@ -4,8 +4,7 @@ define("PATH", "../../../");
 require "../../../assets/admin.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
-	header("Location: /apps/reminders/?error=No Login.");
-	exit;
+	die('{"status":500, "error":"No Login."}');
 }
 
 if (isset($_GET["id"])) {
@@ -18,16 +17,13 @@ if (isset($_GET["id"])) {
 	$stmt->bind_param("i", $id);
 	
 	if ($stmt->execute() === TRUE) {
-		header("Location: /apps/reminders");
-		exit;
+		die('{"status":200}');
 	}else{
-		header("Location: /apps/reminders/?error=MySQL Error");
-		exit;
+		die('{"status":500, "error":"MySQL Error."}');
 	}
 	$stmt->close();
 	$conn->close();
 }else{
-	header("Location: /apps/reminders/?error=No Object Found");
-	exit;
+	die('{"status":500, "error":"No Object found."}');
 }
 ?>

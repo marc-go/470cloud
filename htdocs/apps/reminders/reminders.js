@@ -67,14 +67,12 @@ function closeAdd() {
 }
 
 function deleteWidgetOpen(id) {
-	document.getElementById("overlay").style.display = "block";
-	document.getElementById("delete").style.display = "block";
+	document.getElementById("rmWidget").setAttribute("open", "");
 	document.getElementById("js-tmp").innerHTML = id;
 }
 
 function deleteWidgetClose() {
-	document.getElementById("overlay").style.display = "none";
-	document.getElementById("delete").style.display = "none";
+	document.getElementById("rmWidget").removeAttribute("open");
 }
 
 function deleteRemind() {
@@ -85,8 +83,23 @@ function deleteRemind() {
 			if (data.status == 200) {
 				window.location.reload();
 			}else{
+				alert("Error: More in the Console");
+				console.log(data.error);
+			}
+		})
+		.catch(error => alert("Error: " + error))
+}
+
+function restoreRemind() {
+	var id = document.getElementById("js-tmp").innerHTML;
+	fetch("bin/refresh.php?id=" + id)
+		.then(response => response.json())
+		.then(data => {
+			if(data.status = 200) {
+				window.location.reload();
+			}else{
 				alert("Error: " + data.error);
 			}
 		})
-		.catch(error => alert("Error: " + data.error))
+		.catch(error => alert("Error: " + error))
 }

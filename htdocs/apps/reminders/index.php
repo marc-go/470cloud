@@ -33,6 +33,8 @@ if ($session->checkLogin()) {
     </md-tabs>
 		<md-filled-button onclick="add()">Add</md-filled-button>
         <h3 class="md-typescale-display-medium">Today</h3>
+	<md-list>
+		<div id="today">
         	<?php
         	error_reporting(E_ALL);
         	ini_set('display_errors', 1);
@@ -119,7 +121,7 @@ if ($session->checkLogin()) {
             } else {
                 while ($row = $result->fetch_assoc()) {
                     echo '
-                    <md-list-item>
+                    <md-list-item onclick="deleteWidgetOpen(' . $row["id"] . ')">
     					<div slot="headline">' . $row["name"] . '</div>
     					<div slot="supporting-text">' . $row["date"] . '</div>
 					</md-list-item>
@@ -128,7 +130,7 @@ if ($session->checkLogin()) {
             }
             ?>
     	</div>
-
+	</md-list>
 		<md-dialog id="add">
 			<div slot="headline">
 			  Add Task
@@ -142,15 +144,17 @@ if ($session->checkLogin()) {
 			  <md-text-button form="form-id">Add</md-text-button>
 			</div>
 		  </md-dialog>
-		  <md-dialog>
-			<div slot="headline" id="w-name"></div>
+		  <md-dialog id="rmWidget">
+			<div slot="headline">Options</div>
 			<form slot="content" id="form-id" method="dialog">
-			  <md-filled-button></md-filled-button>
+			  Here you can restore or delete the remind.
 			</form>
 			<div slot="actions">
-			  <md-text-button form="form-id">Ok</md-text-button>
+			  <md-filled-button onclick="restoreRemind()">Restore</md-filled-button>
+			  <md-filled-button onclick="deleteRemind()">Delete</md-filled-button>
+			  <md-text-button onclick="deleteWidgetClose()">Cancle</md-text-button>
 			</div>
 		  </md-dialog>
-	<div id="js-tmp"></div>
+	<div id="js-tmp" style="display: none;"></div>
 </body>
 </html>
