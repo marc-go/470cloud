@@ -40,5 +40,9 @@ if (!$session->checkLogin()) {
 		<md-divider></md-divider>
 		<md-list-item type="link" href="you.php">Your Account</md-list-item>
 	</md-list>
+    <md-outlined-text-field id="user" label="Username"></md-outlined-text-field><br><br><br>
+    <md-outlined-text-field id="mail" label="E-Mail"></md-outlined-text-field><br><br><br>
+    <md-outlined-text-field id="password" label="Password"></md-outlined-text-field><br><br><br>
+    <md-outlined-text-field id="password2" label="Confirm Password"></md-outlined-text-field><br><br><br>
 </body>
 </html>

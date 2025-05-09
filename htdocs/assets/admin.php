@@ -18,8 +18,8 @@ class loginManager {
         $result = $stmt->get_result();
 
         while ($row = $result->fetch_assoc()) {
-            $file = file_get_contents(PATH . "data/users/" . $row["username"] . "/sessions.json");
-            if (filesize(PATH . "data/users/" . $row["username"] . "/sessions.json") === 0) {
+            $file = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $row["username"] . "/sessions.json");
+            if (filesize($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $row["username"] . "/sessions.json") === 0) {
                 continue;
             } else {
                 $file = json_decode($file, true);
@@ -43,7 +43,7 @@ class loginManager {
     public function createNewSession() {
         $session_id = hash("sha256", rand(0, 99999999999));
 
-        $file = file_get_contents(PATH . "data/users/" . $this->user . "/sessions.json");
+        $file = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $this->user . "/sessions.json");
         $file = json_decode($file, true);
 
         $json = [];
@@ -53,7 +53,7 @@ class loginManager {
 
         $file[$_COOKIE["device_id"]] = $json;
 
-        file_put_contents(PATH . "data/users/" . $this->user . "/sessions.json", json_encode($file));
+        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $this->user . "/sessions.json", json_encode($file));
 
         if (setcookie("user_id", $_COOKIE["user_id"], time() + 1800, "/") &&
             setcookie("session_id", $session_id, time() + 1800, "/") &&

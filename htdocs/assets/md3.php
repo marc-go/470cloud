@@ -23,6 +23,14 @@ echo '
         --md-ref-typeface-plain: system-ui;
     }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<style>
+  md-icon {
+    font-family: "Material Symbols Outlined";
+    font-size: 24px;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+</style>
 <script src="/assets/menue.js"></script>
 <script>
     fetch("/apps/home")
@@ -30,4 +38,6 @@ echo '
     fetch("/apps/reminders")
     fetch("/apps/settings")
 </script>
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
 ';

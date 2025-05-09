@@ -31,9 +31,9 @@ if ($session->checkLogin()) {
         <md-primary-tab id="reminders" active>ToDo</md-primary-tab>
         <md-primary-tab id="settings">Settings</md-primary-tab>
     </md-tabs>
-		<md-filled-button onclick="add()">Add</md-filled-button>
-        <h3 class="md-typescale-display-medium">Today</h3>
-	<md-list>
+	<md-filled-button onclick="add()">Add</md-filled-button>
+	<md-list style="background-color: #ffffff;">
+		<h3 class="md-typescale-display-medium">Today</h3>
 		<div id="today">
         	<?php
         	error_reporting(E_ALL);
