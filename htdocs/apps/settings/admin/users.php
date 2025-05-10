@@ -1,7 +1,9 @@
 <?php
-define("PATH", "../../");
+ini_set("display_errors", 1);
+ini_set("display_startup_errors", 1);
+error_reporting(E_ALL);
 
-require "../../assets/admin.php";
+require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	header("Location: ../../login.php?from=apps/settings");
@@ -15,7 +17,7 @@ if (!$session->checkLogin()) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>470Cloud // Settings</title>
 	<?php
-	require "../../assets/md3.php";
+	require $_SERVER["DOCUMENT_ROOT"] . "/assets/md3.php";
 	?>
 	<script src="js/users.js"></script>
 	<style>
@@ -74,24 +76,30 @@ if (!$session->checkLogin()) {
 			<md-outlined-text-field label="E-Mail" id="wg_mail" value=""></md-outlined-text-field><br><br>
 			<md-outlined-text-field label="New Password" id="wg_pw" value=""></md-outlined-text-field><br><br>
 			<md-outlined-text-field label="Confirm" id="wg_pw2" value=""></md-outlined-text-field><br><br>
-  		</form>
+			<md-switch id="wg_admin">Admin</md-switch>
+		</form>
   		<div slot="actions">
 			<md-text-button onclick="closeEdit()">Close</md-text-button>
     		<md-filled-button onclick="saveEdit()">Save</md-filled-button>
   		</div>
 	</md-dialog>
-	<md-dialog>
+	<md-dialog id="addWG">
 		<div slot="headline">
 			Add User
 		</div>
-		<form slot="content" id="form-id" method="dialog">
-		  A simple dialog with free-form content.
+		<form slot="content" id="add-form" method="post" action="bin/adduser.php">
+			<md-outlined-text-field name="user" label="Username"></md-outlined-text-field><br><br>
+			<md-outlined-text-field name="mail" label="E-Mail"></md-outlined-text-field><br><br>
+			<md-outlined-text-field name="pw" type="password" label="Password"></md-outlined-text-field><br><br>
+			<md-outlined-text-field name="pw2" type="password" label="Confirm password"></md-outlined-text-field><br><br>
+			Admin <md-switch name="admin"></md-switch>
 		</form>
 		<div slot="actions">
-		  <md-text-button form="form-id">Ok</md-text-button>
+		  <md-text-button onclick="closeAdd()">Cancle</md-text-button>
+		  <md-filled-button form="add-form">Save</md-filled-button>
 		</div>
 	</md-dialog>
-	<md-fab aria-label="Edit">
+	<md-fab onclick="addUser()" aria-label="Edit">
   		<md-icon slot="icon">add</md-icon>
 	</md-fab>
 </body>

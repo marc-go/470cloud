@@ -1,6 +1,6 @@
 function editUser(user) {
     document.getElementById("js-tmp").innerHTML = user;
-    fetch("/apps/settings/bin/user_info.php?id=" + user)
+    fetch("/apps/settings/admin/bin/user_info.php?id=" + user)
         .then(respone => respone.json())
         .then(data => {
             if (data.status == 500) {
@@ -9,6 +9,11 @@ function editUser(user) {
                 document.getElementById("wg_title_username").innerHTML = data.name;
                 document.getElementById("wg_username").value = data.name;
                 document.getElementById("wg_mail").value = data.mail;
+                if (data.admin == true) {
+                    document.getElementById("wg_admin").setAttribute("selected", "");
+                }else{
+                    document.getElementById("wg_admin").removeAttribute("selected");    
+                }
                 document.getElementById("editWG").setAttribute("open", "");
             }
         })
@@ -28,7 +33,7 @@ function saveEdit() {
         pw2: document.getElementById("wg_pw2").value
     }
 
-    fetch("/apps/settings/apps/bin/user_edit.php", {
+    fetch("/apps/settings/admin/bin/user_edit.php", {
     	method: 'POST',
     	headers: {
         	'Content-Type': 'application/json'
@@ -44,4 +49,12 @@ function saveEdit() {
             }
         })
         .catch(error => alert(error))
+}
+
+function addUser() {
+    document.getElementById("addWG").setAttribute("open", "");
+}
+
+function closeAdd() {
+    document.getElementById("addWG").removeAttribute("open");
 }

@@ -19,6 +19,19 @@ if (!$session->checkLogin()) {
 	?>
 </head>
 <body>
+	<div id="js-tmp" style="display: none;">
+		<?php
+		require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+		$sql = "SELECT id FROM users WHERE username = ?";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("s", $session->getUserName());
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+		$id = $row["id"];
+		echo $id;
+		?>
+	</div>
 	<md-tabs>
         <md-primary-tab id="home">Home</md-primary-tab>
         <md-primary-tab id="files">Files</md-primary-tab>
@@ -30,19 +43,35 @@ if (!$session->checkLogin()) {
 		if ($session->getAdmin()) {
 			echo '
 			<md-list-item>Admin Settings</md-list-item>
-			<md-list-item type="link" href="users.php">
+			<md-list-item type="link" href="admin/users.php">
     			<div slot="headline">User</div>
     			<div slot="supporting-text">User Managment</div>
-  			</md-list-item>';
+  			</md-list-item>
+			<md-divider></md-divider>
+			';
 		}
 		?>
 		<md-list-item>Your Settings</md-list-item>
-		<md-divider></md-divider>
-		<md-list-item type="link" href="you.php">Your Account</md-list-item>
+		<md-list-item type="link" href="you.php">
+			<div slot="headline">Your Account</div>
+			<div slot="supporting-text">Manage your Account</div>
+		</md-list-item>
 	</md-list>
-    <md-outlined-text-field id="user" label="Username"></md-outlined-text-field><br><br><br>
-    <md-outlined-text-field id="mail" label="E-Mail"></md-outlined-text-field><br><br><br>
-    <md-outlined-text-field id="password" label="Password"></md-outlined-text-field><br><br><br>
-    <md-outlined-text-field id="password2" label="Confirm Password"></md-outlined-text-field><br><br><br>
+	<?php
+	require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+	$sql = "SELECT * FROM users WHERE username = ?";
+	$stmt = $conn->prepare($sql);
+	$stmt->bind_param("s", $session->getUserName());
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$row = $result->fetch_assoc();
+	?>
+    <md-outlined-text-field id="user" label="Username" value="<?php echo $row["username"]; ?>"></md-outlined-text-field><br><br>
+    <md-outlined-text-field id="mail" label="E-Mail" value="<?php echo $row["mail"]; ?>"></md-outlined-text-field><br><br>
+    <md-outlined-text-field id="password" label=" New password"></md-outlined-text-field><br><br>
+    <md-outlined-text-field id="password2" label="Confirm new password"></md-outlined-text-field><br><br>
+	<md-filled-button onclick="saveSettings()">Save</md-filled-button>
+
+	<script src="js/you.js"></script>
 </body>
 </html>

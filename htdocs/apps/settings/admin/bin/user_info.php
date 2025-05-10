@@ -25,7 +25,7 @@ if (isset($_GET["id"])) {
     $answer["status"] = 200;
     $answer["name"] = $row["username"];
     $answer["mail"] = $row["mail"];
-    $answer["admin"] = $row["admin"];
+    $answer["admin"] = $row["admin"] == 1 ? true : false;
 
     die(json_encode($answer));
 }else{

@@ -30,15 +30,19 @@ if (!$session->checkLogin()) {
 		if ($session->getAdmin()) {
 			echo '
 			<md-list-item>Admin Settings</md-list-item>
-			<md-list-item type="link" href="users.php">
+			<md-list-item type="link" href="admin/users.php">
     			<div slot="headline">User</div>
     			<div slot="supporting-text">User Managment</div>
-  			</md-list-item>';
+  			</md-list-item>
+			<md-divider></md-divider>
+			';
 		}
 		?>
 		<md-list-item>Your Settings</md-list-item>
-		<md-divider></md-divider>
-		<md-list-item type="link" href="you.php">Your Account</md-list-item>
+		<md-list-item type="link" href="you.php">
+			<div slot="headline">Your Account</div>
+			<div slot="supporting-text">Manage your Account</div>
+		</md-list-item>
 	</md-list>
 </body>
 </html>
