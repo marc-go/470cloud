@@ -1,4 +1,8 @@
 <?php
+ini_set("display_errors", 1);
+ini_set("display_startup_errors", 1);
+error_reporting(E_ALL);
+
 require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
@@ -9,16 +13,18 @@ if (!$session->getAdmin()) {
     die('{"status":500, "error":"Premission denied"}');
 }
 
-if (isset($_POST["user"]) && isset($_POST["mail"]) && isset($_POST["pw"]) && isset($_POST["pw2"]) && isset($_POST["admim"])) {
+$POST = json_decode(file_get_contents("php://input"), true);
+
+if (isset($POST["user"]) == 1 && isset($POST["mail"]) == 1 && isset($POST["pw"]) == 1 && isset($POST["pw2"]) == 1 && isset($POST["admin"]) == 1) {
     require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
     $sql = "INSERT INTO users (username, mail, password, admin) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare("sssi");
+    $stmt = $conn->prepare($sql);
 
-    $user = $_POST["user"];
-    $mail = $_POST["mail"];
-    $pw = hash("sha256", $_POST["pw"]);
-    $pw2 = hash("sha256", $_POST["pw2"]);
-    $admin = $_POST["admin"] == true ? 1 : 0;
+    $user = $POST["user"];
+    $mail = $POST["mail"];
+    $pw = hash("sha256", $POST["pw"]);
+    $pw2 = hash("sha256", $POST["pw2"]);
+    $admin = $POST["admin"];
 
     if ($pw !== $pw2) {
         die('{"status":500, "error":"The passwords are false."}');
@@ -28,9 +34,16 @@ if (isset($_POST["user"]) && isset($_POST["mail"]) && isset($_POST["pw"]) && iss
     
     if (!$stmt->execute()) {
         die('{"status":500, "error":"SQL Error."}');
-    }else{
-        die('{"status":200}');
     }
+
+    if (!mkdir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $user)) {
+        die('{"status":500, "error":"Dictory could not create."}');
+    }
+    if (!file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $user . "/sessions.json", '{"array":true}')) {
+        die('{"status":500, "error":"Error to create a file"}');
+    }
+
+    die('{"status":200}');
 }else{
     die('{"status":500, "error":"No Params."}');
 }

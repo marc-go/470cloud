@@ -122,6 +122,10 @@ if ($session->checkLogin()) {
 			ini_set('display_errors', 1);
 			ini_set('display_startup_errors', 1);
 			error_reporting(E_ALL);
+
+			if (!is_dir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->getUserName() . "/files/root")) {
+				mkdir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->getUserName() . "/files/root");
+			}
 			
 			if (isset($_GET["folder"])) {
 				$path = "../../data/users/" . $session->getUserName() . "/files/root/" . $_GET["folder"] . "/";

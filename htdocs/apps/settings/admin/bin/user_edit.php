@@ -11,13 +11,13 @@ if (!$session->checkLogin()) {
 
 $POST = json_decode(file_get_contents("php://input"), true);
 
-if (isset($POST["name"]) && isset($POST["mail"]) && isset($POST["pw"]) && isset($POST["pw2"]) && isset($POST["id"])) {
-    
+if (isset($POST["name"]) && isset($POST["mail"]) && isset($POST["pw"]) && isset($POST["pw2"]) && isset($POST["id"]) && isset($POST["admin"])) {    
     $id = $POST["id"];
     $name = $POST["name"];
     $mail = $POST["mail"];
     $pw = hash("sha256", $POST["pw"]);
     $pw2 = hash("sha256", $POST["pw2"]);
+    $admin = $POST["admin"];
 
     require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
     
@@ -39,9 +39,9 @@ if (isset($POST["name"]) && isset($POST["mail"]) && isset($POST["pw"]) && isset(
         die('{"status":500, "error":"The passwords are false."}');
     }
 
-    $sql = "UPDATE users SET username = ?, mail = ?, password = ? WHERE id = ?";
+    $sql = "UPDATE users SET username = ?, mail = ?, password = ?, admin = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssi", $name, $mail, $pw2, $id);
+    $stmt->bind_param("sssii", $name, $mail, $pw2, $admin, $id);
     
     if (!$stmt->execute()) {
         die('{"status":500, "error":"SQL Error"}');

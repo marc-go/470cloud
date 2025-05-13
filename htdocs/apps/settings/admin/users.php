@@ -19,7 +19,6 @@ if (!$session->checkLogin()) {
 	<?php
 	require $_SERVER["DOCUMENT_ROOT"] . "/assets/md3.php";
 	?>
-	<script src="js/users.js"></script>
 	<style>
 		md-fab {
 			position: absolute;
@@ -27,6 +26,7 @@ if (!$session->checkLogin()) {
 			right: 5%;
 		}
 	</style>
+	<script src="js/users.js" defer></script>
 </head>
 <body>
 	<div id="js-tmp" style="display: none;"></div>
@@ -87,19 +87,19 @@ if (!$session->checkLogin()) {
 		<div slot="headline">
 			Add User
 		</div>
-		<form slot="content" id="add-form" method="post" action="bin/adduser.php">
-			<md-outlined-text-field name="user" label="Username"></md-outlined-text-field><br><br>
-			<md-outlined-text-field name="mail" label="E-Mail"></md-outlined-text-field><br><br>
-			<md-outlined-text-field name="pw" type="password" label="Password"></md-outlined-text-field><br><br>
-			<md-outlined-text-field name="pw2" type="password" label="Confirm password"></md-outlined-text-field><br><br>
-			Admin <md-switch name="admin"></md-switch>
+		<form slot="content" id="add-form" method="dialog">
+			<md-outlined-text-field id="user" label="Username"></md-outlined-text-field><br><br>
+			<md-outlined-text-field id="mail" label="E-Mail"></md-outlined-text-field><br><br>
+			<md-outlined-text-field id="pw" type="password" label="Password"></md-outlined-text-field><br><br>
+			<md-outlined-text-field id="pw2" type="password" label="Confirm password"></md-outlined-text-field><br><br>
+			<md-switch id="admin"></md-switch>
 		</form>
 		<div slot="actions">
 		  <md-text-button onclick="closeAdd()">Cancle</md-text-button>
-		  <md-filled-button form="add-form">Save</md-filled-button>
+		  <md-filled-button onclick="addUser()">Save</md-filled-button>
 		</div>
 	</md-dialog>
-	<md-fab onclick="addUser()" aria-label="Edit">
+	<md-fab onclick="addUserOpen()" aria-label="Edit">
   		<md-icon slot="icon">add</md-icon>
 	</md-fab>
 </body>
