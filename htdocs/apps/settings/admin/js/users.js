@@ -86,3 +86,9 @@ window.addUser = function() {
         })
         .catch(error => alert(error));
 };
+
+window.removeUser() = function() {
+    confirm("Do you want that the user deleted? All user datas will be removed.");
+
+
+}

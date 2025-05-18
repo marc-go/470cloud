@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
-	header("Location: ../../login.php?from=apps/settings");
+	header("Location: /login.php?from=apps/settings");
 	exit;
 }
 ?>
@@ -80,6 +80,7 @@ if (!$session->checkLogin()) {
 		</form>
   		<div slot="actions">
 			<md-text-button onclick="closeEdit()">Close</md-text-button>
+			<md-text-button onclick="removeUser()">Delete</md-text-button>
     		<md-filled-button onclick="saveEdit()">Save</md-filled-button>
   		</div>
 	</md-dialog>
