@@ -25,6 +25,11 @@ class loginManager {
                 $file = json_decode($file, true);
             }
 
+            if (!is_array($file)) {
+                file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $row["username"] . "/sessions.json", '{"array":true}');
+                continue;
+            }
+
             foreach ($file as $device_id => $json) {
 				if ($device_id == "array") {
 					continue;
@@ -76,5 +81,19 @@ class loginManager {
 			return false;
 		}
 	}
+
+    public function gunfI($id) {
+        require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        print_r($result);
+        return $row["username"];
+    }
 }
 ?>

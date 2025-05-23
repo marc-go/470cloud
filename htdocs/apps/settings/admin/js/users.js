@@ -87,8 +87,16 @@ window.addUser = function() {
         .catch(error => alert(error));
 };
 
-window.removeUser() = function() {
+window.removeUser = function() {
     confirm("Do you want that the user deleted? All user datas will be removed.");
 
-
+    fetch("/apps/settings/admin/bin/rmuser.php?user=" + document.getElementById("js-tmp").innerHTML)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status == 200) {
+                //window.location.reload();
+            }else{
+                alert(data.error);
+            }
+        })
 }

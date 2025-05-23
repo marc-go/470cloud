@@ -34,13 +34,11 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
     if ($result->num_rows <= 0) {
         $error = "Der Benutzername bzw. das Passwort sind falsch.";
     } else {
-        $file = file_get_contents("data/users/" . $user . "/sessions.json");
-        if (filesize("data/users/" . $user . "/sessions.json") !== 0) {
-            $file = json_decode($file, true);
-        } else {
-            $file = array();
+        if (!is_file("data/users/" . $user . "/sessions.json")) {
+            file_put_contents("data/users/" . $user . "/sessions.json", '{"array":true}');
         }
-
+        $file = json_decode(file_get_contents("data/users/" . $user . "/sessions.json"), true);
+        
         $user_id = hash("sha256", rand(0, 99999999999));
         $session_id = hash("sha256", rand(0, 99999999999));
         do {
