@@ -1,7 +1,4 @@
 <?php
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-
 function rmFolder($fPath) {
     if (!is_dir($fPath)) {
         return false;
@@ -22,7 +19,7 @@ function rmFolder($fPath) {
         }
     }
     
-    return rmdir($folderPath);
+    return rmdir($fPath);
 }
 
 require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
@@ -36,12 +33,16 @@ if (!$session->getAdmin()) {
     die('{"status":500, "error":"Premission denied"}');
 }
 
-if (isset($_GET["user"])) {
+$POST = json_decode(file_get_contents("php://input"), true);
+
+if (isset($POST["user"])) {
+    $id = intval($POST["user"]);
+
     require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
 
     $sql = "DELETE FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $_GET["id"]);
+    $stmt->bind_param("i", $id);
 
     if (!$stmt->execute()) {
         die('{"status":500, "error":"SQL Error."}');
@@ -50,8 +51,8 @@ if (isset($_GET["user"])) {
     $stmt->close();
     $conn->close();
 
-    if (is_dir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->gunfI($_GET["id"]))) {
-        if (!rmFolder($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->gunfI($_GET["id"]))) {
+    if (is_dir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->gunfI($id))) {
+        if (!rmFolder($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->gunfI($id))) {
             die('{"status":500, "error":"Failed to remove user folder."}');
         }
     }

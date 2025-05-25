@@ -7,9 +7,7 @@ define("PATH", "../../");
 
 require '../../assets/admin.php';
 $session = new loginManager();
-if ($session->checkLogin() === true) {
-    $session->createNewSession();
-}else{
+if (!$session->checkLogin()) {
     header("Location: ../../login.php?from=apps/home");
     exit;
 }

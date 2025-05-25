@@ -18,8 +18,8 @@ class loginManager {
         $result = $stmt->get_result();
 
         while ($row = $result->fetch_assoc()) {
-            $file = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $row["username"] . "/sessions.json");
-            if (filesize($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $row["username"] . "/sessions.json") === 0) {
+            $file = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "data/users/" . $row["username"] . "/sessions.json");
+            if (filesize($_SERVER["DOCUMENT_ROOT"] . "data/users/" . $row["username"] . "/sessions.json") === 0) {
                 continue;
             } else {
                 $file = json_decode($file, true);
@@ -62,7 +62,7 @@ class loginManager {
 
         if (setcookie("user_id", $_COOKIE["user_id"], time() + 1800, "/") &&
             setcookie("session_id", $session_id, time() + 1800, "/") &&
-            setcookie("device_id", $_COOKIE["device_id"], time() + 1800, "/")) #
+            setcookie("device_id", $_COOKIE["device_id"], time() + 1800, "/"))
 		{
 			return true;
         } else {
@@ -92,8 +92,11 @@ class loginManager {
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
 
-        print_r($result);
-        return $row["username"];
+        if ($row && isset($row["username"])) {
+            return $row["username"];
+        } else {
+            return null;
+        }
     }
 }
 ?>
