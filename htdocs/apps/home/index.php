@@ -26,11 +26,6 @@ if (!$session->checkLogin()) {
     <link rel="prefetch" href="/apps/settings">
 </head>
 <body>
-    <md-tabs>
-        <md-primary-tab id="home" active>Home</md-primary-tab>
-        <md-primary-tab id="files">Files</md-primary-tab>
-        <md-primary-tab id="reminders">ToDo</md-primary-tab>
-        <md-primary-tab id="settings">Settings</md-primary-tab>
-    </md-tabs>
+    <?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
 </body>
 </html>

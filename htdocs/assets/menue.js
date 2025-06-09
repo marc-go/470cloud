@@ -14,4 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("settings").addEventListener("click", function() {
         window.location.href = "/apps/settings";
     });
+
+    document.getElementById("store").addEventListener("click", function() {
+        window.location.href = "/apps/store";
+    });
 });
