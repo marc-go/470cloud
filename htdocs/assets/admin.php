@@ -3,9 +3,22 @@
 * This File is created by Marc Goering (https://marc-goering.de)
 * This is the Login Checker for 470Cloud.
 */
+
 class loginManager {
+    private $root;
+
     private $user;
 	private $admin;
+
+    public function __construct() {
+        $root = $_SERVER["DOCUMENT_ROOT"];
+
+        if (substr($root, -1) !== "/") {
+            $root = $root . "/";
+        }
+
+        $this->root = $root;
+    }
 
     public function checkLogin() {
         if (!isset($_COOKIE["user_id"]) || !isset($_COOKIE["session_id"]) || !isset($_COOKIE["device_id"])) {
@@ -18,15 +31,15 @@ class loginManager {
         $result = $stmt->get_result();
 
         while ($row = $result->fetch_assoc()) {
-            $file = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "data/users/" . $row["username"] . "/sessions.json");
-            if (filesize($_SERVER["DOCUMENT_ROOT"] . "data/users/" . $row["username"] . "/sessions.json") === 0) {
+            $file = file_get_contents($this->root . "data/users/" . $row["username"] . "/sessions.json");
+            if (filesize($this->root . "data/users/" . $row["username"] . "/sessions.json") === 0) {
                 continue;
             } else {
                 $file = json_decode($file, true);
             }
 
             if (!is_array($file)) {
-                file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $row["username"] . "/sessions.json", '{"array":true}');
+                file_put_contents($this->root . "/data/users/" . $row["username"] . "/sessions.json", '{"array":true}');
                 continue;
             }
 
@@ -48,7 +61,7 @@ class loginManager {
     public function createNewSession() {
         $session_id = hash("sha256", rand(0, 99999999999));
 
-        $file = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $this->user . "/sessions.json");
+        $file = file_get_contents($this->root . "/data/users/" . $this->user . "/sessions.json");
         $file = json_decode($file, true);
 
         $json = [];
@@ -58,7 +71,7 @@ class loginManager {
 
         $file[$_COOKIE["device_id"]] = $json;
 
-        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $this->user . "/sessions.json", json_encode($file));
+        file_put_contents($this->root . "/data/users/" . $this->user . "/sessions.json", json_encode($file));
 
         if (setcookie("user_id", $_COOKIE["user_id"], time() + 1800, "/") &&
             setcookie("session_id", $session_id, time() + 1800, "/") &&
@@ -83,7 +96,7 @@ class loginManager {
 	}
 
     public function gunfI($id) {
-        require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+        require $this->root . "/assets/db.php";
 
         $sql = "SELECT * FROM users WHERE id = ?";
         $stmt = $conn->prepare($sql);
