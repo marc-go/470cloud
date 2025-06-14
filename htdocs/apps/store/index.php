@@ -32,7 +32,7 @@ if (!$session->getAdmin()) {
         $file = json_decode($file, true);
 
         foreach ($file as $id => $json) {
-           echo '<md-list-item type="link" onclick="info(' . $id . ')">' . $json["name"] . '</md-list-item>';
+           echo '<md-list-item type="link" onclick="info(' . $id . ')">' . $json["name"] . '<img slot="start" style="width: 56px;" src="' . $json["logo"] . '"></md-list-item>';
         }
         ?>
     </md-list>
