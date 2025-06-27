@@ -31,10 +31,29 @@ if (!$session->getAdmin()) {
         $file = file_get_contents("https://api.470cloud.marc-goering.de/app/cloud/app-store/all.json");
         $file = json_decode($file, true);
 
+        require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+
         foreach ($file as $id => $json) {
-           echo '<md-list-item type="link" onclick="info(' . $id . ')">' . $json["name"] . '<img slot="start" style="width: 56px;" src="' . $json["logo"] . '"></md-list-item>';
+            $sql = "SELECT * FROM apps WHERE app_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            echo '<md-list-item type="link" onclick="info(' . $id . ')">' . $json["name"] . '<img slot="start" style="width: 56px;" src="' . $json["logo"] . '"></md-list-item>';
+            echo '<md-dialog id="' . $id . '">
+                     <div slot="headline">' . $json["name"] . '</div>
+                     <form slot="content" method="dialog">
+                          ' . $json["text"] . '
+                     </form>
+                     <div slot="actions">
+                         <a href="/apps/install.php?id=' . $id . '"><md-filled-button>Install</md-filled-button></a>
+                         <md-text-button onclick="closeWG(' . $id . ')">Close</md-text-button>
+                     </div>
+                 </md-dialog>';
         }
         ?>
     </md-list>
+    <script src="install.js"></script>
 </body>
 </html>
