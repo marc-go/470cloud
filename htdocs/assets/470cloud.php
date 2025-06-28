@@ -183,5 +183,11 @@ function startDB() {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+
+    return $conn;
 }
+
+$file = file_get_contents("../package.json");
+$file = json_decode($file, true);
+$root = $file["root"];
 ?>

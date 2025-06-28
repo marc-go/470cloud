@@ -6,9 +6,9 @@
     <title>Document</title>
     <script type="importmap">
         {
-        "imports": {
-            "@material/web/": "https://esm.run/@material/web/"
-        }
+            "imports": {
+                "@material/web/": "https://esm.run/@material/web/"
+            }
         }
     </script>
     <script type="module">
@@ -106,6 +106,6 @@ if (!$stmt->execute()) {
 $conn->close();
 $stmt->close();
 
-header("Location: /apps/store");
+header("Location: /apps/" . $app["url_name"] . "/install.php");
 exit;
 ?>

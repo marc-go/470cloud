@@ -20,9 +20,11 @@ if (!$session->getAdmin()) {
     <?php
     require "../../assets/md3.php";
     ?>
-    <link rel="prefetch" href="/apps/reminders">
-    <link rel="prefetch" href="/apps/files">
-    <link rel="prefetch" href="/apps/settings">
+    <style>
+        .red-button {
+            --md-elevated-button-container-color: red;
+        }
+    </style>
 </head>
 <body>
     <?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
@@ -40,17 +42,31 @@ if (!$session->getAdmin()) {
             $stmt->execute();
             $result = $stmt->get_result();
 
-            echo '<md-list-item type="link" onclick="info(' . $id . ')">' . $json["name"] . '<img slot="start" style="width: 56px;" src="' . $json["logo"] . '"></md-list-item>';
-            echo '<md-dialog id="' . $id . '">
-                     <div slot="headline">' . $json["name"] . '</div>
-                     <form slot="content" method="dialog">
-                          ' . $json["text"] . '
-                     </form>
-                     <div slot="actions">
-                         <a href="/apps/install.php?id=' . $id . '"><md-filled-button>Install</md-filled-button></a>
-                         <md-text-button onclick="closeWG(' . $id . ')">Close</md-text-button>
-                     </div>
-                 </md-dialog>';
+            if ($result->num_rows == 0) {
+                echo '<md-list-item type="link" onclick="info(' . $id . ')">' . $json["name"] . '<img slot="start" style="width: 56px;" src="' . $json["logo"] . '"></md-list-item>';
+                echo '<md-dialog id="' . $id . '">
+                        <div slot="headline">' . $json["name"] . '</div>
+                        <form slot="content" method="dialog">
+                            ' . $json["text"] . '
+                        </form>
+                        <div slot="actions">
+                            <a href="/apps/install.php?id=' . $id . '"><md-filled-button>Install</md-filled-button></a>
+                            <md-text-button onclick="closeWG(' . $id . ')">Close</md-text-button>
+                        </div>
+                    </md-dialog>';
+            }else{
+                echo '<md-list-item type="link" onclick="info(' . $id . ')">' . $json["name"] . '<img slot="start" style="width: 56px;" src="' . $json["logo"] . '"></md-list-item>';
+                echo '<md-dialog id="' . $id . '">
+                        <div slot="headline">' . $json["name"] . '</div>
+                        <form slot="content" method="dialog">
+                            ' . $json["text"] . '
+                        </form>
+                        <div slot="actions">
+                            <a href="/apps/remove.php?id=' . $id . '"><md-filled-button class="red-button">Remove</md-filled-button></a>
+                            <md-text-button onclick="closeWG(' . $id . ')">Close</md-text-button>
+                        </div>
+                    </md-dialog>';
+            }
         }
         ?>
     </md-list>
