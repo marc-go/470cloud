@@ -1,18 +1,12 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-define("PATH", "../../../");
-
-require "../../../assets/admin.php";
+require "../../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	echo '{"status":500}';
 }
 
 if (isset($_POST["name"]) && isset($_POST["date"])) {
-    require "../../../assets/db.php";
+    $conn = startDB();
     
     $sql = "INSERT INTO reminders (name, user, date, trash) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);

@@ -1,7 +1,7 @@
 <?php
 define("PATH", "../../");
 
-require "../../assets/admin.php";
+require "../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	header("Location: ../../login.php?from=apps/settings");
@@ -15,11 +15,11 @@ if (!$session->checkLogin()) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>470Cloud // Settings</title>
 	<?php
-	require "../../assets/md3.php";
+	addMD();
 	?>
 </head>
 <body>
-	<?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
+	<?php showMenue(); ?>
 	<md-list>
 		<?php
 		if ($session->getAdmin()) {

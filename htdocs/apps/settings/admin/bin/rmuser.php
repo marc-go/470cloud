@@ -22,7 +22,7 @@ function rmFolder($fPath) {
     return rmdir($fPath);
 }
 
-require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
+require "../../../../assets/470cloud.php";
 
 $session = new loginManager();
 if (!$session->checkLogin()) {
@@ -38,7 +38,7 @@ $POST = json_decode(file_get_contents("php://input"), true);
 if (isset($POST["user"])) {
     $id = intval($POST["user"]);
 
-    require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+    r$conn = startDB();
 
     $sql = "DELETE FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);
@@ -51,8 +51,8 @@ if (isset($POST["user"])) {
     $stmt->close();
     $conn->close();
 
-    if (is_dir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->gunfI($id))) {
-        if (!rmFolder($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->gunfI($id))) {
+    if (is_dir($root . "/data/users/" . $session->gunfI($id))) {
+        if (!rmFolder($root . "/data/users/" . $session->gunfI($id))) {
             die('{"status":500, "error":"Failed to remove user folder."}');
         }
     }

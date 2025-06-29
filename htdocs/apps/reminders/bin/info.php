@@ -1,14 +1,12 @@
 <?php
-define("PATH", "../../../");
-
-require "../../../assets/admin.php";
+require "../../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	die('{"status":500}');
 }
 
 if (isset($_GET["id"])) {
-	require "../../../assets/db.php";
+	$conn = startDB();
 	
 	$id = intval($_GET["id"]);
 	

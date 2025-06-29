@@ -1,5 +1,5 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
+require "../../assets/470cloud.php";
 
 $session = new loginManager();
 if (!$session->checkLogin()) {
@@ -18,7 +18,7 @@ if (!$session->getAdmin()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>470Cloud // App Store</title>
     <?php
-    require "../../assets/md3.php";
+    addMD();
     ?>
     <style>
         .red-button {
@@ -27,13 +27,13 @@ if (!$session->getAdmin()) {
     </style>
 </head>
 <body>
-    <?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
+    <?php showMenue(); ?>
     <md-list>
         <?php
         $file = file_get_contents("https://api.470cloud.marc-goering.de/app/cloud/app-store/all.json");
         $file = json_decode($file, true);
 
-        require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+        $conn = startDB();
 
         foreach ($file as $id => $json) {
             $sql = "SELECT * FROM apps WHERE app_id = ?";

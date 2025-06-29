@@ -3,7 +3,7 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
-require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
+require "../../../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
     die('{"status":500, "error":"You are not login."}');
@@ -16,7 +16,7 @@ if (!$session->getAdmin()) {
 $POST = json_decode(file_get_contents("php://input"), true);
 
 if (isset($POST["user"]) == 1 && isset($POST["mail"]) == 1 && isset($POST["pw"]) == 1 && isset($POST["pw2"]) == 1 && isset($POST["admin"]) == 1) {
-    require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+    $conn = startDB();
     $sql = "INSERT INTO users (username, mail, password, admin) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
@@ -36,10 +36,10 @@ if (isset($POST["user"]) == 1 && isset($POST["mail"]) == 1 && isset($POST["pw"])
         die('{"status":500, "error":"SQL Error."}');
     }
 
-    if (!mkdir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $user)) {
+    if (!mkdir($root . "/data/users/" . $user)) {
         die('{"status":500, "error":"Dictory could not create."}');
     }
-    if (!file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $user . "/sessions.json", '{"array":true}')) {
+    if (!file_put_contents($root . "/data/users/" . $user . "/sessions.json", '{"array":true}')) {
         die('{"status":500, "error":"Error to create a file"}');
     }
 

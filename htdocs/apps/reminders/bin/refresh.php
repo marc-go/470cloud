@@ -1,7 +1,5 @@
 <?php
-define("PATH", "../../../");
-
-require "../../../assets/admin.php";
+require "../../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	die('{"status":500, "error":"No Login."}');
@@ -10,7 +8,7 @@ if (!$session->checkLogin()) {
 if (isset($_GET["id"])) {
 	$id = intval($_GET["id"]);
 	
-	require "../../../assets/db.php";
+	$conn = startDB();
 	
 	$sql = "UPDATE reminders SET trash = 0 WHERE id = ?";
 	$stmt = $conn->prepare($sql);

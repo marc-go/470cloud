@@ -1,7 +1,7 @@
 <?php
 define("PATH", "../../");
 
-require "../../assets/admin.php";
+require "../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	header("Location: ../../login.php?from=apps/settings");
@@ -15,13 +15,13 @@ if (!$session->checkLogin()) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>470Cloud // Settings</title>
 	<?php
-	require "../../assets/md3.php";
+	addMD();
 	?>
 </head>
 <body>
 	<div id="js-tmp" style="display: none;">
 		<?php
-		require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+		$conn = startDB();
 		$sql = "SELECT id FROM users WHERE username = ?";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("s", $session->getUserName());
@@ -32,7 +32,7 @@ if (!$session->checkLogin()) {
 		echo $id;
 		?>
 	</div>
-	<?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
+	<?php showMenue(); ?>
 	<md-list>
 		<?php
 		if ($session->getAdmin()) {
@@ -53,7 +53,6 @@ if (!$session->checkLogin()) {
 		</md-list-item>
 	</md-list>
 	<?php
-	require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
 	$sql = "SELECT * FROM users WHERE username = ?";
 	$stmt = $conn->prepare($sql);
 	$stmt->bind_param("s", $session->getUserName());

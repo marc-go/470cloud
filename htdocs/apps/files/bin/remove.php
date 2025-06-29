@@ -1,8 +1,7 @@
 <?php
 //Check Login
-define("PATH", "../../../");
 
-require "../../../assets/admin.php";
+require "../../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	die('{"status":500, "error":"Bitte lade die Seite neu."}');

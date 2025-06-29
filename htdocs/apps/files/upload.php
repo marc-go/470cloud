@@ -3,9 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-define("PATH", "../../");
 
-require "../../assets/admin.php";
+require "../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	header("../../login?from=apps/files");
@@ -22,7 +21,7 @@ if (isset($_POST["submit"])) {
 		$folder = "/";
 	}
 	
-	$path = "../../data/users/" . $session->getUserName() . "/files/root" . $folder . "/" . $name;
+	$path = $root . "/data/users/" . $session->getUserName() . "/files/root" . $folder . "/" . $name;
 	
 	if (!move_uploaded_file($tmp_name, $path)) {
 		$error = "Es gab einen Fehler beim hochladen: ";

@@ -3,9 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-define("PATH", $_SERVER["DOCUMENT_ROOT"] . "/");
-
-require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
+require "../../../../assets/470cloud.php";
 
 $session = new loginManager();
 if (!$session->checkLogin()) {
@@ -13,7 +11,7 @@ if (!$session->checkLogin()) {
 }
 
 if (isset($_GET["id"])) {
-    require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+    $conn = startDB();
 
     $sql = "SELECT * FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);

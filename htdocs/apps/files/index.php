@@ -1,7 +1,5 @@
 <?php
-define("PATH", "../../");
-
-require "../../assets/admin.php";
+require "../../assets/470cloud.php";
 
 $session = new loginManager();
 if ($session->checkLogin()) {
@@ -18,7 +16,7 @@ if ($session->checkLogin()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>470Cloud // Home</title>
     <?php
-	require "../../assets/md3.php";
+	addMD();
 	?>
 	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100&icon_names=add" rel="stylesheet">
 	<link rel="prefetch" href="/apps/home">
@@ -26,7 +24,7 @@ if ($session->checkLogin()) {
     <link rel="prefetch" href="/apps/settings">
 </head>
 <body>
-	<?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
+	<?php showMenue(); ?>
 
 	<span style="position: relative">
 		<md-filled-button id="usage-anchor">Create</md-filled-button>
@@ -118,8 +116,8 @@ if ($session->checkLogin()) {
 			ini_set('display_startup_errors', 1);
 			error_reporting(E_ALL);
 
-			if (!is_dir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->getUserName() . "/files/root")) {
-				mkdir($_SERVER["DOCUMENT_ROOT"] . "/data/users/" . $session->getUserName() . "/files/root");
+			if (!is_dir($root . "/data/users/" . $session->getUserName() . "/files/root")) {
+				mkdir($root . "/data/users/" . $session->getUserName() . "/files/root");
 			}
 			
 			if (isset($_GET["folder"])) {

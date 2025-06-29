@@ -3,9 +3,7 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
-define("PATH", "../../");
-
-require '../../assets/admin.php';
+require '../../assets/470cloud.php';
 $session = new loginManager();
 if (!$session->checkLogin()) {
     header("Location: ../../login.php?from=apps/home");
@@ -19,13 +17,13 @@ if (!$session->checkLogin()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>470Cloud // Home</title>
     <?php
-    require "../../assets/md3.php";
+    addMD();
     ?>
     <link rel="prefetch" href="/apps/reminders">
     <link rel="prefetch" href="/apps/files">
     <link rel="prefetch" href="/apps/settings">
 </head>
 <body>
-    <?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
+    <?php showMenue(); ?>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php
-require '../../assets/admin.php';
-define("PATH", "../../");
+require '../../assets/470cloud.php';
 
 $session = new loginManager();
 if ($session->checkLogin()) {
@@ -18,14 +17,14 @@ if ($session->checkLogin()) {
     <title>470Cloud // ToDo</title>
     <script src="reminders.js"></script>
     <?php
-    require "../../assets/md3.php";
+    addMD();
     ?>
     <link rel="prefetch" href="/apps/home">
     <link rel="prefetch" href="/apps/files">
     <link rel="prefetch" href="/apps/settings">
 </head>
 <body>
-	<?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
+	<?php showMenue(); ?>
 	<md-filled-button onclick="add()">Add</md-filled-button>
 	<md-list style="background-color: #ffffff;">
 		<h3 class="md-typescale-display-medium">Today</h3>
@@ -35,7 +34,7 @@ if ($session->checkLogin()) {
         	ini_set('display_errors', 1);
         	ini_set('display_startup_errors', 1);
         
-        	require "../../assets/db.php";
+        	$conn = startDB();
         
         	$date = date("Y-m-d");
         	$show = 0;
@@ -69,8 +68,6 @@ if ($session->checkLogin()) {
         	ini_set('display_errors', 1);
         	ini_set('display_startup_errors', 1);
         
-        	require "../../assets/db.php";
-        
         	$show = 0;
         
         	$sql = "SELECT * FROM reminders WHERE user = ? AND trash = ?";
@@ -100,8 +97,6 @@ if ($session->checkLogin()) {
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
-        
-            require "../../assets/db.php";
         
             $show = 1;
         

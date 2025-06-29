@@ -1,18 +1,12 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-define("PATH", "../../../");
-
-require "../../../assets/admin.php";
+require "../../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	die('{"status":500, "error":"No Login"}');
 }
 
 if (isset($_GET["id"])) {
-	require "../../../assets/db.php";
+	$conn = startDB();
 	$id = intval($_GET["id"]);
 	
 	$sql = "SELECT user FROM reminders WHERE id = ?";

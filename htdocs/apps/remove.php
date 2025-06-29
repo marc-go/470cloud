@@ -26,7 +26,7 @@ function deleteFolder($folderPath) {
 }
 
 
-require $_SERVER["DOCUMENT_ROOT"] . "/assets/470cloud.php";
+require "../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
     header("Location: /login.php?from=apps/store");

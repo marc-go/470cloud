@@ -24,7 +24,7 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
     $user = $_POST["user"];
     $pw = hash("sha256", $_POST["pw"]);
 
-    require "assets/db.php";
+    $conn = startDB();
     $sql = "SELECT * FROM users WHERE username = ? AND password = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $user, $pw);
@@ -74,8 +74,9 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Login at 470Cloud</title>
     <?php
-    require "assets/md3.php";
+    addMD();
     ?>
     <style>
         body {

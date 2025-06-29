@@ -1,4 +1,19 @@
 <?php
+function startDB() {
+    $servername = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $dbname = "470Cloud";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    return $conn;
+}
+
 class loginManager {
     private $root;
 
@@ -19,7 +34,7 @@ class loginManager {
         if (!isset($_COOKIE["user_id"]) || !isset($_COOKIE["session_id"]) || !isset($_COOKIE["device_id"])) {
             return false;
         }
-        require "db.php";
+        $conn = startDB();
         $sql = "SELECT * FROM users";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -108,83 +123,53 @@ class loginManager {
     }
 }
 
-class design {
-    public function showMenue() {
-        $menue = '<md-tabs>
-        <md-primary-tab id="home" active>Home</md-primary-tab>
-        <md-primary-tab id="files">Files</md-primary-tab>
-        <md-primary-tab id="reminders">ToDo</md-primary-tab>
-        <md-primary-tab id="settings">Settings</md-primary-tab>';
+function showMenue() {
+    $menue = '<md-tabs>
+    <md-primary-tab id="home" active>Home</md-primary-tab>
+    <md-primary-tab id="files">Files</md-primary-tab>
+    <md-primary-tab id="reminders">ToDo</md-primary-tab>
+    <md-primary-tab id="settings">Settings</md-primary-tab>';
 
-        $admin = $session->getAdmin();
+    $menue .= '<md-primary-tab id="store">App Store</md-primray-tab>';
 
-        if ($admin) {
-            $menue .= '<md-primary-tab id="store">App Store</md-primray-tab>';
-        }
-
-        $menue .= '</md-tabs>';
-        echo $menue;
-    }
-
-    public function addMD() {
-        echo '
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-        <script type="importmap">
-            {
-                "imports": {
-                    "@material/web/": "https://esm.run/@material/web/"
-                }
-            }
-        </script>
-        <script type="module">
-            import "@material/web/all.js";
-            import {styles as typescaleStyles} from "@material/web/typography/md-typescale-styles.js";
-
-            document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
-        </script>
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Open%20Sans:wght@400;500;700&display=swap");
-
-            :root{
-                --md-sys-color-primary:rgb(46, 131, 236);
-                --md-ref-typeface-brand: "roboto", sans-serif;
-                --md-ref-typeface-plain: system-ui;
-            }
-        </style>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-        <style>
-            md-icon {
-                font-family: "Material Symbols Outlined";
-                font-size: 24px;
-                font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-            }
-        </style>
-        <script src="/assets/menue.js"></script>
-        <script>
-            fetch("/apps/home")
-            fetch("/apps/files")
-            fetch("/apps/reminders")
-            fetch("/apps/settings")
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-        <script>eruda.init();</script>
-        ';
-    }
+    $menue .= '</md-tabs>';
+    echo $menue;
 }
 
-function startDB() {
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "470Cloud";
+function addMD() {
+    echo '
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "@material/web/": "https://esm.run/@material/web/"
+            }
+        }
+    </script>
+    <script type="module">
+        import "@material/web/all.js";
+        import {styles as typescaleStyles} from "@material/web/typography/md-typescale-styles.js";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open%20Sans:wght@400;500;700&display=swap");
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    return $conn;
+        :root{
+            --md-sys-color-primary:rgb(46, 131, 236);
+            --md-ref-typeface-brand: "roboto", sans-serif;
+            --md-ref-typeface-plain: system-ui;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        md-icon {
+            font-family: "Material Symbols Outlined";
+            font-size: 24px;
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+    </style>
+    <script src="/assets/menue.js"></script>';
 }
 
 $file = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/package.json");

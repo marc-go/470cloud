@@ -21,6 +21,7 @@ if (!isset($_GET["file"])) {
 			img {
 				height: 500px;
 				width: auto;
+			}
 		</style>
 	</head>
 	<body>
@@ -38,9 +39,7 @@ if (!isset($_GET["file"])) {
 			ini_set("display_startup_errors", 1);
 			error_reporting(E_ALL);
 
-			define("PATH", "../../");
-
-			require "../../assets/admin.php";
+			require "../../assets/470cloud.php";
 			$session = new loginManager();
 
 			if (!$session->checkLogin()) {
@@ -69,7 +68,7 @@ if (!isset($_GET["file"])) {
 				"application/x-empty"
 			];
 
-			$path = "../../data/users/" . $session->getUserName() . "/files/root/" . $file;
+			$path = $root . "/data/users/" . $session->getUserName() . "/files/root/" . $file;
 			
 			$type = mime_content_type($path);
 			// echo $type;
@@ -96,7 +95,6 @@ if (!isset($_GET["file"])) {
 					echo '<img src="' . $url . '">';
 				}
 			}
-			// echo "../../data/users/" . $session->getUserName() . "/files/root" . $file;
 			?>
 		</div>
 	</body>

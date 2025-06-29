@@ -3,7 +3,7 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
-require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
+require "../../../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
     die('{"status":500, "error":"You are not login."}');
@@ -19,7 +19,7 @@ if (isset($POST["name"]) && isset($POST["mail"]) && isset($POST["pw"]) && isset(
     $pw2 = hash("sha256", $POST["pw2"]);
     $admin = $POST["admin"];
 
-    require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+    $conn = startDB();
     
     $sql = "SELECT * FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);

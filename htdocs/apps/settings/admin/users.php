@@ -3,7 +3,7 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
-require $_SERVER["DOCUMENT_ROOT"] . "/assets/admin.php";
+require "../../../assets/470cloud.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	header("Location: /login.php?from=apps/settings");
@@ -17,7 +17,7 @@ if (!$session->checkLogin()) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>470Cloud // Settings</title>
 	<?php
-	require $_SERVER["DOCUMENT_ROOT"] . "/assets/md3.php";
+	addMD();
 	?>
 	<style>
 		md-fab {
@@ -30,7 +30,7 @@ if (!$session->checkLogin()) {
 </head>
 <body>
 	<div id="js-tmp" style="display: none;"></div>
-	<?php require $_SERVER["DOCUMENT_ROOT"] . "/assets/menue.php"; ?>
+	<?php showMenue(); ?>
 	<md-list>
 		<?php
 		if ($session->getAdmin()) {
@@ -46,7 +46,7 @@ if (!$session->checkLogin()) {
 	<md-divider></md-divider>
 	<md-list>
 		<?php
-		require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
+		$conn = startDB();
 
 		$sql = "SELECT * FROM users";
 		$stmt = $conn->prepare($sql);

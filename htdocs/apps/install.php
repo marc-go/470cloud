@@ -4,19 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="importmap">
-        {
-            "imports": {
-                "@material/web/": "https://esm.run/@material/web/"
-            }
-        }
-    </script>
-    <script type="module">
-        import '@material/web/all.js';
-        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
-
-        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
-    </script>
+    <?php
+    require "../assets/470cloud.php";
+    addMD();
+    ?>
     <style>
         body {
             display: flex;
@@ -73,7 +64,7 @@ $id = intval($_GET["id"]);
 $app = $file[$id];
 
 $url = $app["download-url"];
-$path = $_SERVER["DOCUMENT_ROOT"] . "/tmp/app_store/" . $app["url_name"] . ".zip";
+$path = $root . "/tmp/app_store/" . $app["url_name"] . ".zip";
 
 if (!file_put_contents($path, fopen($url, "r"))) {
     header("Location: ?error=App%20cannot%20download.");
@@ -83,7 +74,7 @@ if (!file_put_contents($path, fopen($url, "r"))) {
 $zip = new ZipArchive();
 
 if ($zip->open($path)) {
-    $zip->extractTo($_SERVER["DOCUMENT_ROOT"] . "/apps/");
+    $zip->extractTo($root . "/apps/");
     $zip->close();
 }else{
     header("Location: ?error=Zip File cannot open.");
@@ -92,8 +83,7 @@ if ($zip->open($path)) {
 
 unlink($path);
 
-require $_SERVER["DOCUMENT_ROOT"] . "/assets/db.php";
-
+$conn = startDB();
 $sql = "INSERT INTO apps (name, app_id, url_name) VALUES (?, ?, ?)";
 $stmt =  $conn->prepare($sql);
 $stmt->bind_param("sss", $app["name"], $id, $app["url_name"]);
