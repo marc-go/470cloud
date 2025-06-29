@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 define("PATH", "");
 
-require "assets/admin.php";
+require "assets/470cloud.php";
 
 $session = new loginManager();
 if ($session->checkLogin()) {
@@ -92,10 +92,17 @@ if (isset($_POST["user"]) && isset($_POST["pw"])) {
 <body>
   <h1 class="md-typescale-display-medium">470Cloud // Login</h1>
   <?php if (isset($error)) { echo $error; } ?>
-  <form action="#" method="post">
+  <form action="#" method="post" id="login-form">
     <md-outlined-text-field type="text" name="user" label="Username" value=""></md-outlined-text-field>
 	<md-outlined-text-field type="password" name="pw" label="Password" value=""></md-outlined-text-field>    
 	<md-filled-button type="submit">Login</md-filled-button>
   </form>
+  <script>
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            document.getElementById("login-form").submit();
+        }
+    });
+  </script>
 </body>
 </html>

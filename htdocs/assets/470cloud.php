@@ -187,7 +187,7 @@ function startDB() {
     return $conn;
 }
 
-$file = file_get_contents("../package.json");
+$file = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/package.json");
 $file = json_decode($file, true);
 $root = $file["root"];
 ?>
