@@ -11,7 +11,7 @@ if (!$session->checkLogin()) {
 	exit;
 }
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["upload"])) {
 	$tmp_name = $_FILES["data"]["tmp_name"];
 	$name = basename($_FILES["data"]["name"]);
 	

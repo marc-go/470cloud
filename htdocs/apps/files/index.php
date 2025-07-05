@@ -26,21 +26,6 @@ if ($session->checkLogin()) {
 <body>
 	<?php showMenue(); ?>
 
-	<span style="position: relative">
-		<md-filled-button id="usage-anchor">Create</md-filled-button>
-		<md-menu id="usage-menu" anchor="usage-anchor">
-		  <md-menu-item>
-			<div onclick="openDialog('create_file')" slot="headline">Create File</div>
-		  </md-menu-item>
-		  <md-menu-item>
-			<div onclick="openDialog('upload_file')" slot="headline">Upload File</div>
-		  </md-menu-item>
-		  <md-menu-item>
-			<div onclick="openDialog('create_folder')" slot="headline">Create Folder</div>
-		  </md-menu-item>
-		</md-menu>
-	  </span>
-
 	  <script>
 		function openDialog(id) {
 			document.getElementById(id).setAttribute("open", "");
@@ -60,17 +45,17 @@ if ($session->checkLogin()) {
 		  Upload File
 		</div>
 		<form slot="content" id="form-1" action="upload.php" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="submit" value="true">
+			<input type="hidden" name="upload" value="true">
 		  	<?php
 		  	if (isset($_GET["folder"])) {
 				echo '<input type="hidden" name="folder" value="' . $_GET["folder"] . '">';
 		  	}
 		  	?>
 		  	<input type="file" name="data"><br>
-		  	<input type="submit" value="Hochladen">
 	  	</form>
 		<div slot="actions">
-		  <md-text-button onclick="document.getElementById('upload_file').removeAttribute('open')" form="form-id">Ok</md-text-button>
+		  <md-filled-button onclick="document.getElementById('form-1').submit()">Upload</md-filled-button>
+		  <md-text-button onclick="document.getElementById('upload_file').removeAttribute('open')" form="form-id">Cancle</md-text-button>
 		</div>
 	  </md-dialog>
 
@@ -103,10 +88,10 @@ if ($session->checkLogin()) {
 			}
 			?>
 			<md-outlined-text-field type="text" name="name" label="Filename" value=""></md-outlined-text-field><br>
-			<md-filled-button type="submit">Create File</md-filled-button>
 		</form>
 		<div slot="actions">
-		  <md-text-button onclick="document.getElementById('create_file').removeAttribute('open')" form="form-id">Ok</md-text-button>
+		  <md-filled-button onclick="document.getElementById('form-3').submit()">Create File</md-filled-button>
+		  <md-text-button onclick="document.getElementById('create_file').removeAttribute('open')" form="form-id">Cancle</md-text-button>
 		</div>
 	</md-dialog>
 		<span id="error"><?php if (isset($error)) { echo $error; } ?></span>
@@ -117,6 +102,7 @@ if ($session->checkLogin()) {
 			error_reporting(E_ALL);
 
 			if (!is_dir($root . "/data/users/" . $session->getUserName() . "/files/root")) {
+				mkdir($root . "/data/users/" . $session->getUserName() . "/files");
 				mkdir($root . "/data/users/" . $session->getUserName() . "/files/root");
 			}
 			
@@ -169,5 +155,23 @@ if ($session->checkLogin()) {
 		</div>
     </div>
 	<span id="error"></span>
+	<br>
+	<span style="position: relative">
+		<md-fab id="usage-anchor" aria-label="Edit">
+  			<md-icon slot="icon">add</md-icon>
+		</md-fab>
+		<md-menu id="usage-menu" anchor="usage-anchor">
+		  <md-menu-item>
+			<div onclick="openDialog('create_file')" slot="headline">Create File</div>
+		  </md-menu-item>
+		  <md-menu-item>
+			<div onclick="openDialog('upload_file')" slot="headline">Upload File</div>
+		  </md-menu-item>
+		  <md-menu-item>
+			<div onclick="openDialog('create_folder')" slot="headline">Create Folder</div>
+		  </md-menu-item>
+		</md-menu>
+	  </span>
+	
 </body>
 </html>
