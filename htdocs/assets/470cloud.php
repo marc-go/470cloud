@@ -124,13 +124,15 @@ class loginManager {
 }
 
 function showMenue() {
-    $menue = '<md-tabs>
-    <md-primary-tab id="home" active>Home</md-primary-tab>
-    <md-primary-tab id="files">Files</md-primary-tab>
-    <md-primary-tab id="reminders">ToDo</md-primary-tab>
-    <md-primary-tab id="settings">Settings</md-primary-tab>';
+    $location = $_SERVER["PHP_SELF"];
 
-    $menue .= '<md-primary-tab id="store">App Store</md-primray-tab>';
+    $menue = '<md-tabs>
+    <md-primary-tab id="home" ' . (str_contains($location, "home") ? "active" : "") . '>Home</md-primary-tab>
+    <md-primary-tab id="files" ' . (str_contains($location, "files") ? "active" : "") . '>Files</md-primary-tab>
+    <md-primary-tab id="reminders" ' . (str_contains($location, "reminders") ? "active" : "") . '>ToDo</md-primary-tab>
+    <md-primary-tab id="settings" ' . (str_contains($location, "settings") ? "active" : "") . '>Settings</md-primary-tab>';
+
+    $menue .= '<md-primary-tab id="store" ' . (str_contains($location, "store") ? "active" : "") . '>App Store</md-primray-tab>';
 
     $menue .= '</md-tabs>';
     echo $menue;
