@@ -18,4 +18,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("store").addEventListener("click", function() {
         window.location.href = "/apps/store";
     });
+
+    document.getElementById("all").addEventListener("click", function() {
+        window.location.href = "/apps/all.php";
+    });
 });
